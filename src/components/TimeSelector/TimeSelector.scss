@@ -1,5 +1,25 @@
 @use "../../constants/colors.scss";
 
+// Air Canada Style Color Palette
+$ac-primary-blue: #0062e6;
+$ac-light-blue: #e6f0fa;
+$ac-dark-text: #1a1a1a;
+$ac-medium-text: #4B5563;
+$ac-light-text: #adb5bd;
+$ac-white-text: #ffffff;
+$ac-dialog-bg: #ffffff;
+$ac-border-color: #dee2e6;
+
+// General Calendar Styling
+.react-calendar {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: $ac-dialog-bg;
+  border: 1px solid $ac-border-color;
+  border-radius: 8px;
+  width: auto !important; // Override default fixed width
+  padding: 1em; // Added some padding for better spacing
+}
+
 .react-calendar--doubleView {
   width: 700px;
 }
@@ -50,22 +70,61 @@
 
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
-  background-color: #e6e6e6;
+  background-color: $ac-light-blue; // Use AC color for hover
 }
 
+// Navigation Bar
+.react-calendar__navigation {
+  background-color: $ac-dialog-bg;
+  margin-bottom: 1em; // Space below nav (already exists)
+  display: flex; // Ensure flex behavior (already exists)
+  align-items: center; // Vertically align items
+}
+
+.react-calendar__navigation__label {
+  font-size: 1.25em !important; // Override existing
+  font-weight: 600 !important;
+  color: $ac-dark-text !important;
+  pointer-events: none; // Typically not clickable itself
+  flex-grow: 1 !important; // Allow label to take space
+  text-align: center; // Center the label text
+}
+
+.react-calendar__navigation__arrow {
+  font-size: 1.5em !important; // Make arrows a bit larger
+  color: $ac-primary-blue !important;
+  background-color: transparent !important;
+  border-radius: 50% !important; // Try to make them circular
+  padding: 0.25em !important;
+  min-width: auto !important; // Reset min-width if it conflicts
+
+  &:hover, &:focus { // Combined hover and focus for consistency
+    background-color: $ac-light-blue !important;
+  }
+}
+
+// Weekday Headers
 .react-calendar__month-view__weekdays {
   text-align: center;
-  text-transform: uppercase;
-  font: inherit;
-  font-size: 0.75em;
-  font-weight: bold;
+  text-transform: uppercase; // Already uppercase
+  // font: inherit; // Keep default font handling unless specified
+  // font-size: 0.75em; // Base size, overridden by abbr
+  // font-weight: bold; // Base weight, overridden by abbr
 }
 
 .react-calendar__month-view__weekdays__weekday {
-  padding: 0.5em;
+  padding: 0.5em; // Padding for the cell
+
+  abbr { // Target the abbr tag for the text itself
+    font-size: 0.8em !important;
+    font-weight: 500 !important;
+    color: $ac-medium-text !important;
+    text-decoration: none !important; // Remove underline
+  }
 }
 
 .react-calendar__month-view__weekNumbers .react-calendar__tile {
+  // Style for week numbers if they were used
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,67 +140,97 @@
 .react-calendar__month-view__days__day--neighboringMonth,
 .react-calendar__decade-view__years__year--neighboringDecade,
 .react-calendar__century-view__decades__decade--neighboringCentury {
-  color: #757575;
+  color: $ac-light-text; // Use AC color
+  // visibility: hidden; // Option to hide them as per AC style - uncomment if preferred
 }
 
 .react-calendar__year-view .react-calendar__tile,
 .react-calendar__decade-view .react-calendar__tile,
 .react-calendar__century-view .react-calendar__tile {
-  padding: 2em 0.5em;
+  padding: 2em 0.5em; // Default, keep unless specified
 }
 
+// Day Cells - Base Tile Styles
 .react-calendar__tile {
-  max-width: 100%;
-  padding: 10px 6.6667px;
-  background: none;
-  text-align: center;
-  font: inherit;
-  font-size: 0.833em;
+  padding: 0.75em 0.5em !important; // Adjust padding
+  border-radius: 50% !important;    // Make all day cells circular
+  background-color: transparent !important;
+  color: $ac-dark-text !important;
+  font-size: 0.9em !important;
+  max-width: 100%; // Keep
+  text-align: center; // Keep
+  // font: inherit; // Keep, but font-size will override part of it
+  border: none !important; // Remove existing borders from tiles
 }
 
+// Disabled Dates
 .react-calendar__tile:disabled {
-  background-color: #f0f0f0;
-  color: #ababab;
+  color: $ac-light-text !important;
+  background-color: transparent !important; // Ensure no other background
+  text-decoration: line-through;
 }
 
-.react-calendar__month-view__days__day--neighboringMonth:disabled,
-.react-calendar__decade-view__years__year--neighboringDecade:disabled,
-.react-calendar__century-view__decades__decade--neighboringCentury:disabled {
-  color: #cdcdcd;
+// Neighboring month dates are already handled by the specific class above.
+// This :disabled rule also applies to them if they are disabled.
+
+// Hover on Enabled, Non-Selected Dates
+.react-calendar__tile:enabled:hover:not(.react-calendar__tile--active) {
+  background-color: $ac-light-blue !important;
+  color: $ac-dark-text !important; // Or $ac-primary-blue
 }
 
-.react-calendar__tile:enabled:hover,
-.react-calendar__tile:enabled:focus {
-  background-color: #e6e6e6;
+// Today's Date
+.react-calendar__tile--now {
+  background-color: transparent !important; // Reset if it has a default
+  border: 1px solid $ac-primary-blue !important; // Subtle border for today
+  color: $ac-primary-blue !important;
+  
+  &:hover, &:focus { // Keep consistent hover
+    background-color: $ac-light-blue !important;
+  }
 }
 
-// .react-calendar__tile--now {
-//   background: colors.$primary-light;
-//   color: white;
-// }
-
-.react-calendar__tile--hasActive {
-  background: #76baff;
-}
-
-.react-calendar__tile--hasActive:enabled:hover,
-.react-calendar__tile--hasActive:enabled:focus {
-  background: #a9d4ff;
-}
-
+// Active (Selected) Dates
 .react-calendar__tile--active {
-  background: colors.$primary;
-  color: white;
+  background-color: $ac-primary-blue !important;
+  color: $ac-white-text !important;
+  font-weight: bold !important; // Ensure this applies
 }
 
+// Remove hover effect from already active date if it's different
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-  background: colors.$primary;
+  background-color: $ac-primary-blue !important; // Keep selected style on hover
 }
 
-.react-calendar--selectRange .react-calendar__tile--hover {
-  background-color: #e6e6e6;
+
+// .react-calendar__tile--hasActive related styles are less relevant now with direct .react-calendar__tile--active overrides.
+// Can be removed or commented out if they interfere.
+.react-calendar__tile--hasActive {
+  // background: #76baff; // Default, probably overridden
 }
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  // background: #a9d4ff; // Default, probably overridden
+}
+
+// Range selection - very basic, just to color the in-between days if a class exists
+// This is a guess, react-calendar might use different classes for range background.
+.react-calendar__tile--range, // A general class for days in a selected range
+.react-calendar__tile--rangeStart, // Start of range
+.react-calendar__tile--rangeEnd, // End of range
+.react-calendar__tile--rangeBothEnds { // Single day range
+  // For simplicity, if we want range days to also be circular and blue:
+  // background-color: $ac-primary-blue !important;
+  // color: $ac-white-text !important;
+  // If we want them lighter:
+  // background-color: $ac-light-blue !important;
+  // color: $ac-dark-text !important; 
+  // Air Canada's actual range is a bar, which is much more complex.
+  // For now, let's make them similar to selected or hovered.
+}
+// The default .react-calendar--selectRange .react-calendar__tile--hover seems fine for hover during range selection.
+
 
 .time-selector {
   flex-grow: 1;

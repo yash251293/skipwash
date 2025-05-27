@@ -14,15 +14,35 @@ import {
   ListItemButton,
   ListItemText,
   TextField,
+  Paper, // Added Paper
 } from "@mui/material";
-import { useGetLaundromats, useGetLaundromatServices } from "../../api/vendor";
+import {
+  useGetLaundromats,
+  useGetLaundromatServices,
+  useGetCitySuggestions,
+  CitySuggestion, // Import the interface
+} from "../../api/vendor";
 
 const BookPage = () => {
   const [selected, setSelected] = useState<number>();
   const [selectedServices, setSelectedServices] = useState<number[]>([]);
+  const [searchCityQuery, setSearchCityQuery] = useState<string>("");
+  const [suggestedCities, setSuggestedCities] = useState<CitySuggestion[]>([]); // Changed to CitySuggestion[]
+  const [selectedCity, setSelectedCity] = useState<CitySuggestion | null>(null);
 
   const { data: laundromats, isLoading: laundromatsLoading } =
     useGetLaundromats(10, 10);
+
+  const { data: citySuggestionsData, isLoading: isCitySuggestionsLoading } =
+    useGetCitySuggestions(searchCityQuery);
+
+  useEffect(() => {
+    if (citySuggestionsData) {
+      setSuggestedCities(citySuggestionsData);
+    } else {
+      setSuggestedCities([]); // Clear suggestions if no data
+    }
+  }, [citySuggestionsData]); // Removed setSuggestedCities from dependency array as it's a setter from useState
 
   useEffect(() => {
     if (!selected && laundromats) {
@@ -40,10 +60,58 @@ const BookPage = () => {
   const [selectedPickup, setSelectedPickup] = useState();
   const [selectedDropoff, setSelectedDropoff] = useState();
 
+  const handleSuggestionClick = (suggestion: CitySuggestion) => {
+    setSearchCityQuery(suggestion.description);
+    setSelectedCity(suggestion);
+    setSuggestedCities([]); // Clear suggestions after selection
+  };
+
+  // Optional console.log for debugging
+  console.log("Suggested Cities:", suggestedCities);
+  console.log("City Suggestions Loading:", isCitySuggestionsLoading);
+  console.log('Selected City:', selectedCity);
+
+
   return (
     <>
       <div className="steps">
         <h2>1. Select a Laundromat</h2>
+      </div>
+      <div style={{ position: 'relative', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <TextField
+          className="select-city"
+          label="Enter City or Area"
+          variant="outlined"
+          value={searchCityQuery}
+          onChange={(e) => setSearchCityQuery(e.target.value)}
+          style={{ marginBottom: "1rem", width: '50%' }} // Example width, adjust as needed
+        />
+        {/* Suggestions List */}
+        {suggestedCities.length > 0 && (
+          <Paper 
+            elevation={3} 
+            sx={{ 
+              position: 'absolute', 
+              zIndex: 1000, 
+              width: '50%', // Match TextField width
+              maxHeight: '200px',
+              overflowY: 'auto',
+              marginTop: '56px', // Approximate height of TextField + margin
+              top: 0, // Align with top of TextField container
+            }}
+          >
+            <List component="nav" aria-label="city suggestions">
+              {suggestedCities.map((suggestion) => (
+                <ListItemButton
+                  key={suggestion.id}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  <ListItemText primary={suggestion.description} />
+                </ListItemButton>
+              ))}
+            </List>
+          </Paper>
+        )}
       </div>
       <TextField
         className="select-address"

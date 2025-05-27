@@ -47,4 +47,26 @@ const useGetLaundromatServices = (laundromatId?: number) => {
   return query;
 };
 
-export { useGetLaundromats, useGetLaundromatServices };
+export interface CitySuggestion {
+  id: string;
+  description: string;
+}
+
+const useGetCitySuggestions = (searchQuery: string) => {
+  const query = useQuery<CitySuggestion[]>({
+    queryKey: ["citySuggestions", searchQuery],
+    queryFn: async () => {
+      // Assuming /api is a valid endpoint prefix for this application
+      const res = await fetch(`/api/city-suggestions?query=${searchQuery}`);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return res.json();
+    },
+    enabled: searchQuery.length > 0, // Enabled if searchQuery has at least 1 character
+  });
+
+  return query;
+};
+
+export { useGetLaundromats, useGetLaundromatServices, useGetCitySuggestions };

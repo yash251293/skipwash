@@ -1,3 +1,5 @@
+@import "../../constants/colors.scss";
+
 .homepage-card {
   font-weight: 300;
   flex-direction: column;
@@ -29,10 +31,26 @@
     background-color: black;
     height: 0.8rem;
     margin: 1rem 0 3rem 0;
+
+    @media (max-width: $breakpoint-medium) {
+      width: 10rem; // Adjusted for tablets/small desktops
+    }
+
+    @media (max-width: $breakpoint-small) {
+      width: 6rem; // Adjusted for mobile phones
+    }
   }
 
   h4 {
     font-size: 3rem;
     margin: 0;
+
+    @media (max-width: $breakpoint-medium) {
+      font-size: 2.5rem; // Slightly smaller for tablets
+    }
+
+    @media (max-width: $breakpoint-small) {
+      font-size: 2rem; // Smaller for mobile phones
+    }
   }
 }

@@ -1,21 +1,30 @@
+@import "../../constants/colors.scss";
+
 .logo-card {
   width: 100vw;
   height: 50vh;
   background-image: url("./../../assets/washing-machine.jpg");
-  background-size: auto;
-  background-position: 0px -300px;
-  align-content: center;
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 
   img {
-    width: 50vw;
+    width: 80%;
+    max-width: 400px;
     background-color: #005450e0;
     padding: 2rem;
     border-radius: 5rem;
+
+    @media (max-width: $breakpoint-medium) {
+      padding: 1.5rem;
+      border-radius: 3rem;
+    }
+    @media (max-width: $breakpoint-small) {
+      padding: 1rem;
+      border-radius: 2rem;
+    }
   }
 }

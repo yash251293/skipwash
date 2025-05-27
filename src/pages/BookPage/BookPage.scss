@@ -13,6 +13,18 @@
     border-color: colors.$primary;
     border-radius: 10px;
   }
+
+  @media (max-width: colors.$breakpoint-medium) {
+    flex-direction: column !important; // Stack items
+
+    .MuiFormControlLabel-root {
+      width: 100%; // Or some other appropriate width for stacked items
+      margin-bottom: 0.5rem; // Add spacing between stacked items
+      margin-left: 0;
+      margin-right: 0;
+      box-sizing: border-box;
+    }
+  }
 }
 
 .laundromat-container {
@@ -20,6 +32,22 @@
   flex-direction: row;
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+  @media (max-width: colors.$breakpoint-medium) {
+    flex-direction: column; // Stack sections
+
+    .laundromat-list,
+    .laundromat-info {
+      width: 100%; // Or flex-basis: 100%;
+      box-sizing: border-box;
+    }
+    .laundromat-list {
+      margin-bottom: 1rem; // Add space between stacked sections
+    }
+    .laundromat-info {
+      padding-left: 0; // Reset padding if it was for side-by-side layout
+    }
+  }
 }
 
 .laundromat-list {
@@ -84,8 +112,14 @@
 }
 
 .select-address {
-  width: 60vw;
+  width: 90vw; // Default for smaller screens
   align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: colors.$breakpoint-medium) {
+    width: 60vw; // Original width for larger screens
+  }
 }
 
 .notes-form {

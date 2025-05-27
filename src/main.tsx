@@ -22,8 +22,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-// const server = setupWorker(...handlers);
-// server.start();
+const server = setupWorker(...handlers);
+server.start();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

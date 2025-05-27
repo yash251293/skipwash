@@ -1,0 +1,21 @@
+.logo-card {
+  width: 100vw;
+  height: 50vh;
+  background-image: url("./../../assets/washing-machine.jpg");
+  background-size: auto;
+  background-position: 0px -300px;
+  align-content: center;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  img {
+    width: 50vw;
+    background-color: #005450e0;
+    padding: 2rem;
+    border-radius: 5rem;
+  }
+}

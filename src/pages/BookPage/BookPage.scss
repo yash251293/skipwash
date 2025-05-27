@@ -1,0 +1,112 @@
+@use "../../constants/colors.scss";
+
+.additional-services-list {
+  display: flex !important;
+  flex-direction: row !important;
+  background-color: colors.$primary;
+
+  .MuiFormControlLabel-root {
+    background-color: white;
+    padding: 0 2rem 0 1rem;
+    margin: 1rem;
+    border-style: solid;
+    border-color: colors.$primary;
+    border-radius: 10px;
+  }
+}
+
+.laundromat-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.laundromat-list {
+  &__item-info {
+    display: flex;
+    &__price {
+      align-self: center;
+      padding-left: 1rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.disabled {
+  //
+  opacity: 0.5;
+  cursor: not-allowed;
+  //   pointer-events: none;
+}
+
+// .laundromat-list {
+//   flex: 1;
+//   border-top-right-radius: 20px;
+//   border-bottom-right-radius: 20px;
+//   border-color: colors.$primary;
+//   border-style: solid;
+//   border-width: 4px;
+
+//   &__item {
+//     padding: 1rem 0 1rem 0;
+//     cursor: pointer;
+//     h4,
+//     p {
+//       margin: 0;
+//     }
+
+//     &:hover {
+//       background-color: colors.$primary-hover;
+//       color: white;
+//     }
+//   }
+
+//   .selected {
+//     color: white;
+//     background-color: colors.$primary;
+//   }
+// }
+
+.laundromat-info {
+  flex: 1;
+  background: white;
+
+  &__disallowed {
+    text-align: left;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  padding-left: 3rem;
+}
+
+.select-address {
+  width: 60vw;
+  align-self: center;
+}
+
+.notes-form {
+  background-color: colors.$primary;
+  color: white;
+  padding: 0.5rem !important;
+  //   display: flex;
+  //   flex-direction: row !important;
+
+  //   align-self: center;
+  //   width: 100%;
+  //   .MuiFormLabel-root {
+  //     color: white;
+  //   }
+  //   .MuiFormControl-root {
+  //     color: white;
+  //   }
+}
+
+.checkout-button {
+  .MuiButtonBase-root {
+    padding: 3rem;
+  }
+}

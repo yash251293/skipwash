@@ -20,53 +20,25 @@ const TimeSelector = ({ onChange }: TimeSelectorProps) => {
         />
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-          flexDirection: "column",
-          alignSelf: "flex-start",
-          flex: 1,
-          flexWrap: "wrap",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            // justifyContent: "flex-start", // Or "space-around" if preferred
-            // The parent of this div is:
-            // <div style={{ display: "flex", justifyContent: "center", alignContent: "center", 
-            // flexDirection: "column", alignSelf: "flex-start", flex: 1, flexWrap: "wrap" }}>
-            // The flexDirection: "column" on the parent might conflict.
-            // Let's simplify the parent or ensure this div is the primary flex container for the slots.
-            // For now, let's assume this div will correctly lay out its children.
-            // We might need to adjust its parent if layout issues occur.
-            // Add some padding to this container if needed, e.g., padding: "0 0.5rem"
-          }}
-        >
-          <div className="time-selector time-selector--selected"> {/* Added time-selector--selected here */}
-            <p>10:00-10:30</p>
-          </div>
-          <div className="time-selector">
-            <p>10:00-10:30</p>
-          </div>
-          <div className="time-selector">
-            <p>10:00-10:30</p>
-          </div>
-          <div className="time-selector">
-            <p>10:00-10:30</p>
-          </div>
-          <div className="time-selector">
-            <p>10:00-10:30</p>
-          </div>
-          <div className="time-selector">
-            <p>10:00-10:30</p>
-          </div>
-          <div className="time-selector">
-            <p>10:00-10:30</p>
-          </div>
+      <div className="time-display-area"> {/* Assign class, remove inline style */}
+        {/* Use a fragment or a single root div if preferred */}
+        <h3 > {/* Remove inline style, will be handled by SCSS via parent */}
+          Times Available: {/* Date will be dynamic later */}
+        </h3>
+        
+        <div className="time-slots-group"> {/* Assign class, remove inline style */}
+          <h4 >Morning</h4> {/* Remove inline style */}
+          <div className="time-slot-text time-slot-text--no-dot">8:00 AM</div>
+          <div className="time-slot-text time-slot-text--selected">10:00 AM</div>
+          <div className="time-slot-text">11:00 AM</div>
+        </div>
+
+        <div className="time-slots-group"> {/* Assign class */}
+          <h4 >Afternoon</h4> {/* Remove inline style */}
+          <div className="time-slot-text">1:00 PM</div>
+          <div className="time-slot-text">2:00 PM</div>
+          <div className="time-slot-text">3:00 PM</div>
+          <div className="time-slot-text time-slot-text--no-dot">4:00 PM</div>
         </div>
       </div>
     </div>

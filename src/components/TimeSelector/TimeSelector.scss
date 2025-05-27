@@ -1,14 +1,21 @@
 @use "../../constants/colors.scss";
 
-// Air Canada Style Color Palette
+// Air Canada Style Color Palette (Keep existing AC colors for calendar)
 $ac-primary-blue: #0062e6;
 $ac-light-blue: #e6f0fa;
-$ac-dark-text: #1a1a1a;
+// $ac-dark-text, $ac-medium-text, $ac-light-text, $ac-white-text, $ac-dialog-bg, $ac-border-color
+// are already defined below, so I will use them or the new ones as appropriate.
+$ac-dark-text: #1a1a1a; // This is very dark, similar to new $text-color-dark
 $ac-medium-text: #4B5563;
 $ac-light-text: #adb5bd;
 $ac-white-text: #ffffff;
 $ac-dialog-bg: #ffffff;
 $ac-border-color: #dee2e6;
+
+// New Colors for Time Slot Area
+$service-booking-green: #006400; // Dark green
+$text-color-dark: #333; // General dark text (very similar to $ac-dark-text)
+
 
 // General Calendar Styling
 .react-calendar {
@@ -233,35 +240,123 @@ $ac-border-color: #dee2e6;
 
 
 .time-selector {
-  flex-grow: 1;
-  flex-basis: calc(33.333% - 1rem); // Aim for 3 items per row, adjust margin.
-                                  // Assumes parent uses 0.5rem margin on items, total 1rem horizontal space taken by margins per item effectively.
-  max-width: calc(33.333% - 1rem); // Important for flex-basis to work as expected in some scenarios.
-  margin: 0.5rem;
-  padding: 0.6rem 0.5rem; // Adjusted padding, more vertical for a chip
-  border-radius: 16px; // More rounded for a modern chip/pill look
-  font-size: 0.85em; // Slightly smaller font
+  // flex-grow: 1;
+  // flex-basis: calc(33.333% - 1rem); 
+  // max-width: calc(33.333% - 1rem); 
+  margin: 0.5rem; // Keep margin for some spacing if multiple items were in a row
+  // padding: 0.6rem 0.5rem; 
+  // border-radius: 16px; 
+  font-size: 0.9em; // Keep or adjust font size as needed
   cursor: pointer;
-  text-align: center;
-  background: #ffffff; // White background
-  color: #2c3e50; // Darker, desaturated blue/grey text
-  border: 1px solid #e0e0e0; // Light grey border
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; // Smooth transitions
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05); // Subtle shadow
+  text-align: left; // Default text align for simple text
+  // background: #ffffff; 
+  color: #2c3e50; // Keep text color or make it $ac-dark-text
+  // border: 1px solid #e0e0e0; 
+  // transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+  // box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
 
   &:hover {
-    background: colors.$primary-light;
-    color: white;
-    border-color: colors.$primary-light;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    // background: colors.$primary-light; // Revert hover to simple text change if any
+    // color: white;
+    // border-color: colors.$primary-light;
+    // box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-decoration: underline; // Simple hover effect for text
+    color: colors.$primary; // Hover color
   }
 
   // New class for demonstrating selected state
   &--selected { 
-    background: colors.$primary;
-    color: white;
-    border-color: colors.$primary;
+    // background: colors.$primary;
+    // color: white;
+    // border-color: colors.$primary;
     font-weight: bold;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    color: colors.$primary; // Selected text color
+    // box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+}
+
+// New class for the text-based time slots, if specific styling is needed beyond .time-selector
+.time-slot-text {
+  // Inherits from .time-selector if used together, or define base styles here
+  // For now, specific inline styles are used in the TSX.
+  // If we want common styles for all .time-slot-text:
+  // padding: 0.3rem 0; // from inline
+  // cursor: pointer; // from inline
+  // margin-bottom: 0.25rem; // Add some space between stacked time slots
+
+  // The specific styles for .time-slot-text provided in the prompt will be added below.
+  // This section can be removed or merged. For now, I'll add the new styles separately.
+}
+
+
+// Container for Time Area
+.time-display-area {
+  padding-left: 1rem; // Space from calendar
+  flex: 1;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.1em;
+    color: $text-color-dark; // Use new $text-color-dark
+  }
+
+  h4 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1em;
+    color: $service-booking-green; // Section headers in green
+  }
+
+  .time-slots-group { // Wrapper for each list of time-slot-text items
+    margin-bottom: 1rem;
+  }
+}
+
+// Styles for .time-slot-text
+.time-slot-text {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.2rem;
+  cursor: pointer;
+  font-size: 0.95em;
+  color: $text-color-dark; // Use new $text-color-dark
+  transition: color 0.2s ease-in-out, font-weight 0.2s ease-in-out, background-color 0.2s ease-in-out; // Added background-color to transition
+  border-radius: 4px; // Slight rounding for hover/selection background if added
+
+  &::before {
+    content: '';
+    display: inline-block;
+    min-width: 8px; // Use min-width and min-height to ensure size
+    min-height: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: $service-booking-green;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  &:hover {
+    color: $service-booking-green;
+    // text-decoration: underline; // Optional: some find underlines busy
+    background-color: #f0f0f0; // Slight background on hover for better click target affordance
+  }
+
+  &--selected {
+    color: $service-booking-green;
+    font-weight: bold;
+    background-color: #e6f7e9; // Light green background for selected
+
+    // &::before { // Optional: change dot on selection
+    //   background-color: darken($service-booking-green, 10%);
+    // }
+  }
+
+  &--no-dot {
+    &::before {
+      background-color: #ccc; // Grey dot for unavailable, instead of hiding
+      // Or display: none; if preferred
+    }
   }
 }

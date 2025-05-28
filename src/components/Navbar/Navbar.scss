@@ -1,23 +1,26 @@
 @import "../../constants/colors.scss";
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  // Base wrapper styles - common for both desktop and mobile views
   background-color: $primary;
   color: #fff;
   position: sticky;
   top: 0;
-  z-index: 1000; // Ensure navbar is above general page content
+  z-index: 1000;
   font-family: "system-ui";
   font-weight: 100;
-  padding: 1rem 1.5rem; // Mobile padding by default
+  // Padding is removed from here and applied to specific desktop/mobile containers
 }
 
-@media (min-width: 768px) {
-  .navbar {
-    padding: 1rem 5rem; // Desktop padding
-  }
+.navbar-desktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5rem; // Desktop padding
+}
+
+.navbar-mobile {
+  display: none !important; // Hidden by default, shown in mobile media query
 }
 
 .navbar-left .logo {
@@ -52,162 +55,93 @@
 
 // Styles for the new hamburger placeholder
 .new-hamburger {
-  display: none; // Hidden by default (for desktop)
+  display: none; // Hidden by default (for desktop) -> This refers to the old .new-hamburger, can be removed.
 }
 
 .navbar-center {
   // On desktop, it takes space and holds the links
+  // This rule itself is fine if .navbar-center is part of .navbar-desktop
+  // Media query below is for the specific context of .navbar-center within .navbar-desktop
   @media (min-width: 768px) {
-    flex: 1; // Allows nav-links to distribute space
+    flex: 1;
     display: flex;
-    justify-content: center; // Center the links within this div
+    justify-content: center;
   }
 }
 
-.nav-links {
+.nav-links { // These are the desktop links within .navbar-center
   list-style-type: none;
-  display: none; // Hidden by default on mobile
+  // display: none; // This global 'display: none' is too broad now.
+                 // It should be handled by .navbar-desktop visibility.
+                 // Desktop links are visible by default if their parent .navbar-desktop is.
   margin: 0;
   padding: 0;
   letter-spacing: 0.025rem;
 
+  // This media query correctly styles .nav-links for desktop view
   @media (min-width: 768px) {
-    display: flex; // Displayed as flex row on desktop
+    display: flex;
     flex-direction: row;
-    align-items: center; // Align items vertically in the center
-    justify-content: center; // Center links if navbar-center has flex:1
-    width: auto; // Take up necessary width
-    position: static; // Reset from absolute
-    background-color: transparent; // No special background on desktop
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    position: static;
+    background-color: transparent;
   }
 }
 
-.nav-links li {
+.nav-links li { // Styling for desktop list items
   cursor: pointer;
   @media (min-width: 768px) {
-    flex: none; // Don't grow/shrink on desktop
+    flex: none;
     margin-right: 1rem;
-    padding: 0; // Reset padding
-    width: auto; // Reset width
-    text-align: left; // Reset text-align
+    padding: 0;
+    width: auto;
+    text-align: left;
     &:last-child {
       margin-right: 0;
     }
   }
 }
 
-.nav-links a {
+.nav-links a { // Styling for desktop links
   color: #fff;
   text-decoration: none;
   display: block; // Make the whole area clickable
-  padding: 0.5rem 0; // Add padding for mobile tap targets
-
+  // padding: 0.5rem 0; // This was for mobile tap targets, remove from general rule
   @media (min-width: 768px) {
-    padding: 0; // Reset padding for desktop
+    padding: 0; // Desktop links usually don't need extra padding
   }
 }
 
-// Mobile menu specific styles - All old mobile menu specific styles are deleted
-/*
-.nav-links.mobile-menu-open {
-  ...
-}
-.nav-links.mobile-menu-open li {
-  ...
-}
-*/
+// Styles for mobile-nav-links (the dropdown) will be added here later
+// For now, it's controlled by JS conditional rendering.
 
 @media (max-width: 767px) {
-  // All old rules inside this media query related to:
-  // .navbar-center .nav-links:not(.mobile-menu-open)
-  // .hamburger-icon
-  // .hamburger-icon .bar
-  // .hamburger-icon .bar::before
-  // are DELETED.
-
-  // Rule for .navbar-center to be hidden on mobile
-  .navbar-center {
-    // display: none; // REMOVED for testing
-    // No specific display rule here for now, let it inherit or be default block/flex.
+  .navbar-desktop {
+    display: none !important; /* Hide desktop header on mobile */
   }
 
-  // Ensure ul.nav-links (non-mobile version) is Hidden on Mobile
-  .nav-links {
-    &:not(.nav-links-mobile-open) {
-      display: none !important; // Hide if not the open mobile menu
-    }
+  .navbar-mobile {
+    display: flex !important; /* Show mobile header bar */
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem; // Mobile padding
+    // background-color: $primary; // Inherited from .navbar
   }
 
-  // Styles for the new hamburger placeholder on mobile
-  .new-hamburger {
-    display: flex; // Use flex to arrange bars
-    flex-direction: column;
-    justify-content: space-around; // Spreads out the bars vertically
-    width: 30px;  // Standard hamburger width
-    height: 25px; // Standard hamburger height
-    background-color: transparent; // No background for the container itself usually
-    padding: 0; // Reset padding
-    cursor: pointer; // Should already be there
-    z-index: 1005; // Should already be there
-    // No text-align needed now
+  .mobile-hamburger-icon {
+    color: white;
+    background-color: darkblue; // Temporary obvious background
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
   }
 
-  .new-hamburger .new-bar {
-    display: block;
-    width: 100%; // Takes full width of parent .new-hamburger (e.g., 30px)
-    height: 3px;  // Thickness of the bar
-    background-color: #fff; // White bars
-    border-radius: 3px; // Slightly rounded corners
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; // Added transition
-    // No margin needed if justify-content: space-around is used on parent
-  }
-
-  // 'X' animation for the hamburger icon
-  .new-hamburger.new-hamburger-is-open .new-bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg); // Approximate based on 25px height and 3px bar height
-  }
-  .new-hamburger.new-hamburger-is-open .new-bar:nth-child(2) {
-    opacity: 0;
-  }
-  .new-hamburger.new-hamburger-is-open .new-bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg); // Approximate based on 25px height and 3px bar height
-  }
-
-  // Styles for the mobile dropdown menu itself
-  .nav-links.nav-links-mobile-open {
-    display: block !important; /* Or flex, block is fine for a simple box */
-    position: fixed !important; /* Position relative to viewport */
-    top: 50px !important; /* Place it clearly on screen */
-    left: 10px !important;
-    right: 10px !important; /* Give it width */
-    min-height: 100px !important; /* Ensure it has height */
-    background-color: blue !important; /* Different, very obvious color */
-    z-index: 20000 !important; /* Extremely high z-index */
-    opacity: 1 !important;
-    visibility: visible !important;
-    border: 3px solid lime !important; /* Obvious border */
-    padding: 10px !important; // Ensure padding doesn't make content invisible
-  }
-
-  // Styles for list items within the mobile dropdown
-  /*
-  .nav-links.nav-links-mobile-open li {
-    width: 100%;
-    text-align: center;
-    margin: 0.5rem 0;
-    padding: 0.5rem 0; // Make the whole li a larger tap target
-  }
-  */
-
-  // Styles for links within the mobile dropdown list items
-  .nav-links.nav-links-mobile-open li a {
-    color: yellow !important;
-    font-size: 16px !important;
-    display: block !important; // Ensure links take space
-    padding: 5px !important;
-    background-color: purple !important; // Different background for items
-    margin-bottom: 2px !important;
-  }
+  // The old .nav-links specific hiding rules for mobile are no longer needed
+  // as .navbar-desktop (its parent) is now hidden.
+  // The old .new-hamburger rules are also deleted.
 }
 
 // All old styles for .hamburger-icon.open .bar:nth-child(...) are DELETED.

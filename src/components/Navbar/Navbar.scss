@@ -127,7 +127,15 @@
 
   // Rule for .navbar-center to be hidden on mobile
   .navbar-center {
-    display: none;
+    // display: none; // REMOVED for testing
+    // No specific display rule here for now, let it inherit or be default block/flex.
+  }
+
+  // Ensure ul.nav-links (non-mobile version) is Hidden on Mobile
+  .nav-links {
+    &:not(.nav-links-mobile-open) {
+      display: none !important; // Hide if not the open mobile menu
+    }
   }
 
   // Styles for the new hamburger placeholder on mobile

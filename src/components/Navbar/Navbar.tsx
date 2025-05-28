@@ -17,11 +17,13 @@ const Navbar = () => {
           Skipwash
         </a>
       </div>
-      <div className="new-hamburger" onClick={toggleMobileMenu}>
-        MENU
+      <div className={`new-hamburger ${isMobileMenuOpen ? "new-hamburger-is-open" : ""}`} onClick={toggleMobileMenu}>
+        <span className="new-bar"></span>
+        <span className="new-bar"></span>
+        <span className="new-bar"></span>
       </div>
       <div className="navbar-center">
-        <ul className="nav-links">
+        <ul className={`nav-links ${isMobileMenuOpen ? "nav-links-mobile-open" : ""}`}>
           <li
             onClick={() => {
               navigate("/home/services");

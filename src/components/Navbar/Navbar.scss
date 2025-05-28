@@ -132,13 +132,66 @@
 
   // Styles for the new hamburger placeholder on mobile
   .new-hamburger {
+    display: flex; // Use flex to arrange bars
+    flex-direction: column;
+    justify-content: space-around; // Spreads out the bars vertically
+    width: 30px;  // Standard hamburger width
+    height: 25px; // Standard hamburger height
+    background-color: transparent; // No background for the container itself usually
+    padding: 0; // Reset padding
+    cursor: pointer; // Should already be there
+    z-index: 1005; // Should already be there
+    // No text-align needed now
+  }
+
+  .new-hamburger .new-bar {
     display: block;
-    color: white;
-    background-color: green; // Temporary obvious background
-    padding: 8px 12px;
-    cursor: pointer;
-    z-index: 1005;
+    width: 100%; // Takes full width of parent .new-hamburger (e.g., 30px)
+    height: 3px;  // Thickness of the bar
+    background-color: #fff; // White bars
+    border-radius: 3px; // Slightly rounded corners
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; // Added transition
+    // No margin needed if justify-content: space-around is used on parent
+  }
+
+  // 'X' animation for the hamburger icon
+  .new-hamburger.new-hamburger-is-open .new-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); // Approximate based on 25px height and 3px bar height
+  }
+  .new-hamburger.new-hamburger-is-open .new-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .new-hamburger.new-hamburger-is-open .new-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); // Approximate based on 25px height and 3px bar height
+  }
+
+  // Styles for the mobile dropdown menu itself
+  .nav-links.nav-links-mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; // Position it right below the navbar
+    left: 0;
+    right: 0; // Or width: 100%;
+    background-color: $primary;
+    z-index: 1000; // Same as navbar, or just below if navbar needs to be above an overlay
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  // Styles for list items within the mobile dropdown
+  .nav-links.nav-links-mobile-open li {
+    width: 100%;
     text-align: center;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0; // Make the whole li a larger tap target
+  }
+
+  // Styles for links within the mobile dropdown list items
+  .nav-links.nav-links-mobile-open li a {
+    display: block; // Ensure link takes full width of li
+    color: #fff; // Ensure link text is white
+    // padding: 0.5rem 0; // Padding can be on <li> or <a>, choose one or split
   }
 }
 

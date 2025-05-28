@@ -30,6 +30,19 @@ h1 {
   line-height: 1.1;
 }
 
+/* Responsive h1 font sizes */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2.5em; /* Approx 40px on 16px base */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2em; /* Approx 32px on 16px base */
+  }
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

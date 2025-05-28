@@ -134,38 +134,32 @@
   }
 
   .hamburger-icon {
-    display: block !important;
-    width: 50px !important;
-    height: 50px !important;
-    background-color: red !important; /* For icon container visibility */
-    position: fixed !important; /* Detach from normal flow */
-    top: 10px !important;
-    right: 10px !important;
-    z-index: 9999 !important; /* Ensure it's on top */
-    cursor: pointer !important; // Keep this
-    // Remove any other properties like flex-direction, justify-content for this test
+    display: flex; // Restored
+    flex-direction: column; // Restored
+    justify-content: space-around; // Restored
+    width: 30px; // Restored
+    height: 25px; // Restored
+    background-color: red !important; /* Keep for icon container visibility */
+    cursor: pointer; // Restored
+    // Removed: position, top, right, z-index, !important from display, width, height
   }
 
-  // Apply to .bar globally for simplicity in this debug step,
-  // or ensure it's within the media query if bars have different desktop styles.
-  // For this test, global override is acceptable for .bar if it's simpler.
   .hamburger-icon .bar {
-    display: block !important;
-    width: 100% !important; /* Full width of the red 50px container */
-    height: 8px !important; /* Make bars thick */
-    background-color: blue !important; /* Contrasting color for bars */
-    margin-bottom: 5px !important; /* Space out bars */
-    border-radius: 0 !important; // Simplify
-    transition: none !important; // Disable transitions for now
-    opacity: 1 !important; // Ensure full opacity
-    transform: none !important; // Reset any transforms
+    display: block; // Original
+    width: 25px; // Original
+    height: 3px; // Original
+    margin: 5px auto; // Original
+    background-color: #fff; // Original - white bars
+    border-radius: 3px; // Original
+    transition: all 0.3s ease-in-out; // Original
+    opacity: 1; // Original/Reset
+    transform: none; // Original/Reset
+    // Removed all !important flags
   }
 }
 
 // Styles for when the menu is open (e.g., 'X' icon for hamburger)
-// These will be overridden by the above .hamburger-icon .bar styles for now due to !important
-// or we can temporarily comment them out.
-/*
+// This requires adding a class to the hamburger icon via JS when isMobileMenuOpen is true
 .hamburger-icon.open .bar:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -175,7 +169,6 @@
 .hamburger-icon.open .bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
-*/
 
 // Remove existing right section styling if not used
 .navbar-right {

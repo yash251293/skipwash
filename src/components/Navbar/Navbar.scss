@@ -36,27 +36,10 @@
   }
 }
 
-/*
-.hamburger-icon {
-  display: none; // Hidden by default
-  cursor: pointer;
-}
-
-.hamburger-icon .bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  background-color: #fff;
-  border-radius: 3px;
-  transition: all 0.3s ease-in-out;
-}
-*/
-
-// Styles for the new hamburger placeholder
-.new-hamburger {
-  display: none; // Hidden by default (for desktop) -> This refers to the old .new-hamburger, can be removed.
-}
+// Styles for the new hamburger placeholder - This class is no longer used.
+// .new-hamburger {
+//   display: none; 
+// }
 
 .navbar-center {
   // On desktop, it takes space and holds the links
@@ -119,41 +102,40 @@
 
 @media (max-width: 767px) {
   .navbar-desktop {
-    display: none !important; /* Hide desktop header on mobile */
+    display: none !important; /* Hide desktop header on mobile. !important can be reviewed later if issues arise with specificity. */
   }
 
   .navbar-mobile {
-    display: flex !important; /* Show mobile header bar */
+    display: flex !important; /* Show mobile header bar. !important can be reviewed later. */
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem; // Mobile padding
-    // background-color: $primary; // Inherited from .navbar
   }
 
   .mobile-hamburger-icon {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 30px;  // Standard hamburger width
-    height: 25px; // Standard hamburger height
-    background-color: transparent; // No background for the container itself
-    padding: 0; // Reset padding
-    cursor: pointer; // Keep
-    z-index: 1005; // Keep or adjust as needed, must be high enough
+    width: 30px;
+    height: 25px;
+    background-color: transparent; // Ensuring no debug color remains
+    padding: 0;
+    cursor: pointer;
+    z-index: 1005; // Ensures it's above the mobile dropdown if they overlap somehow (though dropdown is absolute)
   }
 
   .mobile-hamburger-icon .mobile-bar {
     display: block;
-    width: 100%; // Takes full width of parent (e.g., 30px)
-    height: 3px;  // Thickness of the bar
-    background-color: #fff; // White bars (assuming $primary navbar bg is dark)
-    border-radius: 3px; // Slightly rounded corners
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; // For 'X' animation
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
 
   // 'X' animation for the hamburger icon when open
   .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg); 
+    transform: translateY(8px) rotate(45deg);
   }
   .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(2) {
     opacity: 0;
@@ -163,50 +145,40 @@
   }
 
   // Styles for the mobile dropdown menu itself
-  ul.mobile-nav-links { // Styles for when it's rendered (i.e., menu is open)
-    display: flex;
+  ul.mobile-nav-links {
+    display: flex; // This is shown/hidden by JS conditional rendering, not by class change in SCSS
     flex-direction: column;
     list-style-type: none;
     margin: 0;
-    padding: 1rem 0; // Vertical padding for the dropdown container
-    position: absolute; // Position relative to .navbar or .navbar-mobile
-    top: 100%; // Position it right below the navbar-mobile bar
+    padding: 1rem 0;
+    position: absolute;
+    top: 100%; // Position below the .navbar (which contains .navbar-mobile)
     left: 0;
-    right: 0; // Or width: 100%;
-    background-color: $primary; // Match navbar background, or a slightly different shade
-    z-index: 1001; 
-    border-top: 1px solid rgba(255, 255, 255, 0.2); // Optional separator
+    right: 0;
+    background-color: $primary;
+    z-index: 1001; // Ensure it's above general page content but below any modals if navbar is also below modals
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   ul.mobile-nav-links li {
     width: 100%;
     text-align: center;
-    margin: 0; // Remove default li margins if any
-    display: block; // Ensure li takes full width, for the padding/hover effect
-    padding: 0.75rem 1rem; // Padding for tap targets
-    color: #fff; // Link text color
+    margin: 0;
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #fff;
     text-decoration: none;
-    font-size: 1rem; // Or desired font size
-    cursor: pointer; // Since the li is the click target in TSX
+    font-size: 1rem;
+    cursor: pointer;
   }
 
-  ul.mobile-nav-links li:hover { // Optional hover effect
+  ul.mobile-nav-links li:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
-
-  // The old .nav-links specific hiding rules for mobile are no longer needed
-  // as .navbar-desktop (its parent) is now hidden.
-  // The old .new-hamburger rules are also deleted.
 }
 
-// All old styles for .hamburger-icon.open .bar:nth-child(...) are DELETED.
-/*
-.hamburger-icon.open .bar:nth-child(1) {
-  ...
-}
-*/
-
-// Remove existing right section styling if not used - This section remains as it's unrelated.
+// Commented out or deleted sections related to old hamburger icons or intermediate attempts are removed.
+// .navbar-right styles remain as they are unrelated and potentially in use.
 .navbar-right {
   // display: flex; // This was for cart/user icons, if they exist, they'll need responsive handling too
   // align-items: center;

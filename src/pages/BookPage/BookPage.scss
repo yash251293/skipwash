@@ -120,6 +120,20 @@
   @media (min-width: colors.$breakpoint-medium) {
     width: 60vw; // Original width for larger screens
   }
+
+  // Target MUI component inside .select-address for small screens
+  @media (max-width: colors.$breakpoint-small) {
+    .MuiFormControl-root,
+    .MuiInputBase-root {
+      width: 100%; // Force it to take the width of .select-address (90vw)
+      min-width: 0;  // Attempt to override any default min-width
+    }
+
+    .MuiInputBase-input {
+      min-width: 0; // Allow input to shrink further
+      width: 100%; // Ensure input field also respects container width
+    }
+  }
 }
 
 .notes-form {
@@ -137,6 +151,19 @@
   //   .MuiFormControl-root {
   //     color: white;
   //   }
+
+  // Target MUI TextField inside .notes-form for small screens
+  @media (max-width: colors.$breakpoint-small) {
+    .MuiTextField-root {
+      width: 100%;    // Make the TextField wrapper take full available width
+      min-width: 0;   // Override default min-width for the root
+
+      .MuiInputBase-input { // Target the actual input element
+        min-width: 0;     // Allow input to shrink
+        width: 100%; // Ensure input field also respects container width
+      }
+    }
+  }
 }
 
 .checkout-button {

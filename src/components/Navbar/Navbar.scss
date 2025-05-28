@@ -145,6 +145,8 @@
   }
 
   .hamburger-icon .bar {
+    /* All existing properties commented out for this test */
+    /*
     display: block !important;
     width: 25px !important;
     height: 3px !important;
@@ -155,11 +157,30 @@
     border-radius: 3px !important;
     transition: all 0.3s ease-in-out !important; // Keep transition
     transform: none !important; // Ensure no initial transform hides them
+    */
+  }
+
+  .hamburger-icon .bar::before {
+    content: "BAR HERE" !important; /* Force text content */
+    display: block !important;
+    width: auto !important; /* Let content define width */
+    height: auto !important; /* Let content define height */
+    font-size: 10px !important;
+    color: lime !important; /* Extremely visible color */
+    background-color: purple !important; /* Contrasting background for the text */
+    padding: 2px !important;
+    margin-bottom: 2px !important; /* Space them out if multiple bars render this */
+    position: relative !important; /* Ensure it's not positioned off-screen by default */
+    z-index: 10000 !important; /* Above everything else */
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
   }
 }
 
 // Styles for when the menu is open (e.g., 'X' icon for hamburger)
 // This requires adding a class to the hamburger icon via JS when isMobileMenuOpen is true
+/*
 .hamburger-icon.open .bar:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -169,6 +190,7 @@
 .hamburger-icon.open .bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+*/
 
 // Remove existing right section styling if not used
 .navbar-right {

@@ -107,91 +107,25 @@
   }
 }
 
-// Mobile menu specific styles
+// Mobile menu specific styles - All old mobile menu specific styles are deleted
 /*
 .nav-links.mobile-menu-open {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 100%; // Position below the navbar
-  left: 0;
-  right: 0;
-  background-color: $primary;
-  z-index: 1001; // Must be higher than .navbar to be visible on top
-  padding: 1rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2); // Optional: separator line
+  ...
 }
-
 .nav-links.mobile-menu-open li {
-  width: 100%;
-  text-align: center;
-  margin: 0.5rem 0;
-  padding: 0.5rem 0; // Padding for each item
+  ...
 }
 */
 
 @media (max-width: 767px) {
-  /*
-  .navbar-center .nav-links:not(.mobile-menu-open) {
-    display: none; // Ensure nav-links are hidden if not mobile-menu-open
-  }
-  */
+  // All old rules inside this media query related to:
+  // .navbar-center .nav-links:not(.mobile-menu-open)
+  // .hamburger-icon
+  // .hamburger-icon .bar
+  // .hamburger-icon .bar::before
+  // are DELETED.
 
-  .navbar-center {
-    // The container of nav-links might not need to take space if links are absolute
-    // Or, it could be used to position the hamburger icon if it's inside it.
-    // Based on current TSX, hamburger is separate, so navbar-center can be minimal.
-    display: none; // Completely remove from layout on mobile
-  }
-
-  /*
-  .hamburger-icon {
-    display: flex; // Restored
-    flex-direction: column; // Restored
-    justify-content: space-around; // Restored
-    width: 30px; // Restored
-    height: 25px; // Restored
-    background-color: red !important; /* Keep for icon container visibility */
-    cursor: pointer; // Restored
-    // Removed: position, top, right, z-index, !important from display, width, height
-  }
-
-  .hamburger-icon .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #fff; // White bars
-    opacity: 1;
-    visibility: visible;
-    margin: 5px auto; // Original margin was '5px auto'
-
-    /* Ensure these are commented out or not present for this step:
-    // border-radius: ...;
-    // transition: ...;
-    // transform: ...;
-    */
-  }
-
-  /* .hamburger-icon .bar::before { // Pseudo-element rule removed/commented
-    content: "BAR HERE" !important;
-    display: block !important;
-    width: auto !important;
-    height: auto !important;
-    font-size: 10px !important;
-    color: lime !important;
-    background-color: purple !important;
-    padding: 2px !important;
-    margin-bottom: 2px !important;
-    position: relative !important;
-    z-index: 10000 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-  } */
-  */
-
-  // Re-confirming .navbar-center is hidden on mobile, as per instructions.
-  // This rule was already present and confirmed in previous steps.
+  // Rule for .navbar-center to be hidden on mobile
   .navbar-center {
     display: none;
   }
@@ -203,29 +137,19 @@
     background-color: green; // Temporary obvious background
     padding: 8px 12px;
     cursor: pointer;
-    z-index: 1005; // Ensure it's on top
+    z-index: 1005;
     text-align: center;
-    // Optional additional styling for clarity:
-    // font-size: 14px;
-    // border-radius: 4px;
   }
 }
 
-// Styles for when the menu is open (e.g., 'X' icon for hamburger)
-// This requires adding a class to the hamburger icon via JS when isMobileMenuOpen is true
+// All old styles for .hamburger-icon.open .bar:nth-child(...) are DELETED.
 /*
 .hamburger-icon.open .bar:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.hamburger-icon.open .bar:nth-child(2) {
-  opacity: 0;
-}
-.hamburger-icon.open .bar:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  ...
 }
 */
 
-// Remove existing right section styling if not used
+// Remove existing right section styling if not used - This section remains as it's unrelated.
 .navbar-right {
   // display: flex; // This was for cart/user icons, if they exist, they'll need responsive handling too
   // align-items: center;

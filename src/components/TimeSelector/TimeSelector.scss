@@ -158,3 +158,56 @@
     color: white;
   }
 }
+
+// New styles for TimeSelector layout
+.time-selector-main-container {
+  display: flex; // This is the default from inline style
+  // gap: 1rem; // Optional: if you want a gap between calendar and slots area
+}
+
+.time-selector-calendar-area {
+  flex: 1; // Default from inline style
+}
+
+.time-selector-slots-area {
+  flex: 1; // Default from inline style
+  // The existing inline styles for this element (display: flex, flex-direction: column etc.) will still apply.
+  // If those need to be responsive, they would also need to be moved here and adjusted in media queries.
+  // For now, we primarily focus on the .time-selector-slots-row for wrapping.
+}
+
+.time-selector-slots-row {
+  display: flex; // Default from inline style
+  flex-wrap: wrap;
+  justify-content: center; // Or other alignment as preferred
+}
+
+// Responsive adjustments
+@media (max-width: colors.$breakpoint-medium) { // Or use $breakpoint-small if preferred
+  .time-selector-main-container {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .time-selector-calendar-area {
+    width: 100%; 
+    display: flex;          // Added to help center the calendar
+    justify-content: center; // Added to help center the calendar
+    margin-bottom: 1rem;    // Space when stacked
+
+    .react-calendar {
+      width: 100%;      // Make calendar full width of its container
+      max-width: 350px; // Or your preferred max-width for a mobile calendar
+      // margin: 0 auto; // Centering if its container is wider, but container is now centered.
+    }
+  }
+
+  .time-selector-slots-area {
+    width: 100%; 
+    // Reset align-self if it was flex-start, to allow centering if needed
+    align-self: center; 
+  }
+
+  // .time-selector-slots-row will already wrap due to the rule above.
+  // No specific changes needed here unless alignment or item sizing needs to change for mobile.
+}

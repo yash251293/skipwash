@@ -10,8 +10,10 @@ const TimeSelector = ({ onChange }: TimeSelectorProps) => {
   const currentTime = Date.now();
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 1 }}>
+    // Add className="time-selector-main-container"
+    <div className="time-selector-main-container" style={{ display: "flex" }}> {/* Keep existing style for now, SCSS will override display for responsiveness */}
+      {/* Add className="time-selector-calendar-area" */}
+      <div className="time-selector-calendar-area" style={{ flex: 1 }}> {/* Keep existing style */}
         <Calendar
           onChange={onChange}
           tileDisabled={({ date }) => {
@@ -20,18 +22,21 @@ const TimeSelector = ({ onChange }: TimeSelectorProps) => {
         />
       </div>
 
+      {/* Add className="time-selector-slots-area" */}
       <div
-        style={{
+        className="time-selector-slots-area"
+        style={{ // Keep existing styles for now
           display: "flex",
           justifyContent: "center",
           alignContent: "center",
           flexDirection: "column",
           alignSelf: "flex-start",
           flex: 1,
-          flexWrap: "wrap",
+          flexWrap: "wrap", // This flexWrap here might be for the content *within* slots-area if it had multiple children, not for the slots-row itself
         }}
       >
-        <div style={{ display: "flex" }}>
+        {/* Add className="time-selector-slots-row" */}
+        <div className="time-selector-slots-row" style={{ display: "flex" }}> {/* Keep existing style */}
           <div className="time-selector">
             <p>10:00-10:30</p>
           </div>

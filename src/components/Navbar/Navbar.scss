@@ -33,6 +33,7 @@
   }
 }
 
+/*
 .hamburger-icon {
   display: none; // Hidden by default
   cursor: pointer;
@@ -46,6 +47,12 @@
   background-color: #fff;
   border-radius: 3px;
   transition: all 0.3s ease-in-out;
+}
+*/
+
+// Styles for the new hamburger placeholder
+.new-hamburger {
+  display: none; // Hidden by default (for desktop)
 }
 
 .navbar-center {
@@ -101,6 +108,7 @@
 }
 
 // Mobile menu specific styles
+/*
 .nav-links.mobile-menu-open {
   display: flex;
   flex-direction: column;
@@ -120,11 +128,14 @@
   margin: 0.5rem 0;
   padding: 0.5rem 0; // Padding for each item
 }
+*/
 
 @media (max-width: 767px) {
+  /*
   .navbar-center .nav-links:not(.mobile-menu-open) {
     display: none; // Ensure nav-links are hidden if not mobile-menu-open
   }
+  */
 
   .navbar-center {
     // The container of nav-links might not need to take space if links are absolute
@@ -133,6 +144,7 @@
     display: none; // Completely remove from layout on mobile
   }
 
+  /*
   .hamburger-icon {
     display: flex; // Restored
     flex-direction: column; // Restored
@@ -176,6 +188,27 @@
     visibility: visible !important;
     transform: none !important;
   } */
+  */
+
+  // Re-confirming .navbar-center is hidden on mobile, as per instructions.
+  // This rule was already present and confirmed in previous steps.
+  .navbar-center {
+    display: none;
+  }
+
+  // Styles for the new hamburger placeholder on mobile
+  .new-hamburger {
+    display: block;
+    color: white;
+    background-color: green; // Temporary obvious background
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 1005; // Ensure it's on top
+    text-align: center;
+    // Optional additional styling for clarity:
+    // font-size: 14px;
+    // border-radius: 4px;
+  }
 }
 
 // Styles for when the menu is open (e.g., 'X' icon for hamburger)

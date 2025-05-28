@@ -19,6 +19,34 @@
 
 .navbar-center {
   flex: 1;
+  // On mobile, navbar-center might need to be full width if nav-links are absolutely positioned relative to it
+  @media (max-width: $breakpoint-medium) {
+    // Potentially adjust flex properties if hamburger is outside this, or if it needs to take full width
+    // For now, assuming hamburger is a direct child of .navbar, alongside .navbar-left and .navbar-center
+  }
+}
+
+.navbar-hamburger {
+  display: none; // Hidden by default
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001; // Ensure it's above other nav elements
+
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff; // White color to match existing navbar text
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @media (max-width: $breakpoint-medium) {
+    display: block; // Visible on mobile/tablet
+    // Potentially adjust order or positioning if needed, e.g. order: -1 to move to start of flex container
+  }
 }
 
 .navbar-left .logo {
@@ -43,12 +71,32 @@
 
 @media (max-width: $breakpoint-medium) {
   .navbar-center .nav-links {
-    flex-direction: column;
+    display: none; // Hide by default on mobile
 
-    li {
-      margin-right: 0;
-      margin-bottom: 0.5rem;
-      text-align: center;
+    &.mobile-menu-active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%; // Position below the navbar (assuming navbar is 100% of its parent's height)
+      left: 0;
+      width: 100%;
+      background-color: $primary; // Use existing navbar background
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+
+      li {
+        text-align: center;
+        margin: 0.5rem 0;
+        width: 100%;
+        margin-right: 0; // Reset from desktop
+        margin-bottom: 0.5rem; // Keep or adjust spacing
+      }
+
+      a {
+        display: block; // Make entire area clickable
+        padding: 0.5rem 0; // Add padding to link itself for better touch target
+      }
     }
   }
 }

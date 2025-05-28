@@ -141,6 +141,10 @@
 
 .checkout-button {
   .MuiButtonBase-root {
-    padding: 3rem;
+    padding: 3rem; // Default padding
+
+    @media (max-width: colors.$breakpoint-small) {
+      padding: 1.5rem; // Reduced padding for small screens
+    }
   }
 }

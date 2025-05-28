@@ -145,16 +145,16 @@
   }
 
   .hamburger-icon .bar {
-    display: block; // Original
-    width: 25px; // Original
-    height: 3px; // Original
-    margin: 5px auto; // Original
-    background-color: #fff; // Original - white bars
-    border-radius: 3px; // Original
-    transition: all 0.3s ease-in-out; // Original
-    opacity: 1; // Original/Reset
-    transform: none; // Original/Reset
-    // Removed all !important flags
+    display: block !important;
+    width: 25px !important;
+    height: 3px !important;
+    background-color: #fff !important; // White bars
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin: 5px auto !important;
+    border-radius: 3px !important;
+    transition: all 0.3s ease-in-out !important; // Keep transition
+    transform: none !important; // Ensure no initial transform hides them
   }
 }
 

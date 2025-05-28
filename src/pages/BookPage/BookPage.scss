@@ -123,15 +123,25 @@
 
   // Target MUI component inside .select-address for small screens
   @media (max-width: colors.$breakpoint-small) {
-    .MuiFormControl-root,
-    .MuiInputBase-root {
-      width: 100%; // Force it to take the width of .select-address (90vw)
-      min-width: 0;  // Attempt to override any default min-width
+    // Refined for MuiAutocomplete
+    .MuiAutocomplete-root { // Main wrapper for Autocomplete
+      width: 100% !important; // Force it to obey .select-address width
+      min-width: 0 !important;
     }
 
-    .MuiInputBase-input {
-      min-width: 0; // Allow input to shrink further
-      width: 100%; // Ensure input field also respects container width
+    .MuiFormControl-root, // Keep this if Autocomplete also uses it as a wrapper
+    .MuiInputBase-root,   // Keep this as Autocomplete input is often based on InputBase
+    .MuiAutocomplete-inputRoot { // Specific to Autocomplete's input area styling
+      width: 100% !important; 
+      min-width: 0 !important; 
+    }
+
+    .MuiInputBase-input,     // The actual input tag
+    .MuiAutocomplete-input { // Specifically the input tag within Autocomplete
+      width: 100% !important;
+      min-width: 0 !important;
+      // Example: ensure space for dropdown arrow. Adjust if needed.
+      // padding-right: 30px !important; 
     }
   }
 }

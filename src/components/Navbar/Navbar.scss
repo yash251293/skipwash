@@ -8,7 +8,7 @@
   color: #fff;
   position: sticky;
   top: 0;
-  z-index: 1001; // Ensure navbar is above other content, but mobile menu can be higher
+  z-index: 1000; // Ensure navbar is above general page content
   font-family: "system-ui";
   font-weight: 100;
   padding: 1rem 1.5rem; // Mobile padding by default
@@ -109,7 +109,7 @@
   left: 0;
   right: 0;
   background-color: $primary;
-  z-index: 1000; // Below navbar's z-index if navbar needs to be above it, but above other page content
+  z-index: 1001; // Must be higher than .navbar to be visible on top
   padding: 1rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.2); // Optional: separator line
 }

@@ -38,8 +38,13 @@ const Navbar = () => {
             Skipwash
           </a>
         </div>
-        <div className="mobile-hamburger-icon" onClick={toggleMobileMenu}>
-          MENU {/* Placeholder text, will be replaced by actual icon later */}
+        <div 
+          className={`mobile-hamburger-icon ${isMobileMenuOpen ? "mobile-hamburger-icon--open" : ""}`} 
+          onClick={toggleMobileMenu}
+        >
+          <span className="mobile-bar"></span>
+          <span className="mobile-bar"></span>
+          <span className="mobile-bar"></span>
         </div>
       </div>
 

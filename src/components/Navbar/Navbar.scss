@@ -131,12 +131,67 @@
   }
 
   .mobile-hamburger-icon {
-    color: white;
-    background-color: darkblue; // Temporary obvious background
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;  // Standard hamburger width
+    height: 25px; // Standard hamburger height
+    background-color: transparent; // No background for the container itself
+    padding: 0; // Reset padding
+    cursor: pointer; // Keep
+    z-index: 1005; // Keep or adjust as needed, must be high enough
+  }
+
+  .mobile-hamburger-icon .mobile-bar {
+    display: block;
+    width: 100%; // Takes full width of parent (e.g., 30px)
+    height: 3px;  // Thickness of the bar
+    background-color: #fff; // White bars (assuming $primary navbar bg is dark)
+    border-radius: 3px; // Slightly rounded corners
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; // For 'X' animation
+  }
+
+  // 'X' animation for the hamburger icon when open
+  .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); 
+  }
+  .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  // Styles for the mobile dropdown menu itself
+  ul.mobile-nav-links { // Styles for when it's rendered (i.e., menu is open)
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem 0; // Vertical padding for the dropdown container
+    position: absolute; // Position relative to .navbar or .navbar-mobile
+    top: 100%; // Position it right below the navbar-mobile bar
+    left: 0;
+    right: 0; // Or width: 100%;
+    background-color: $primary; // Match navbar background, or a slightly different shade
+    z-index: 1001; 
+    border-top: 1px solid rgba(255, 255, 255, 0.2); // Optional separator
+  }
+
+  ul.mobile-nav-links li {
+    width: 100%;
+    text-align: center;
+    margin: 0; // Remove default li margins if any
+    display: block; // Ensure li takes full width, for the padding/hover effect
+    padding: 0.75rem 1rem; // Padding for tap targets
+    color: #fff; // Link text color
+    text-decoration: none;
+    font-size: 1rem; // Or desired font size
+    cursor: pointer; // Since the li is the click target in TSX
+  }
+
+  ul.mobile-nav-links li:hover { // Optional hover effect
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   // The old .nav-links specific hiding rules for mobile are no longer needed

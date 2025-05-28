@@ -130,7 +130,7 @@
     // The container of nav-links might not need to take space if links are absolute
     // Or, it could be used to position the hamburger icon if it's inside it.
     // Based on current TSX, hamburger is separate, so navbar-center can be minimal.
-    flex-grow: 0; // Don't let it take up space if its children are hidden/absolute
+    display: none; // Completely remove from layout on mobile
   }
 
   .hamburger-icon {

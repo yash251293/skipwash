@@ -167,31 +167,38 @@
 
   // Styles for the mobile dropdown menu itself
   .nav-links.nav-links-mobile-open {
-    display: flex !important; // Add !important here
-    flex-direction: column;
-    position: absolute;
-    top: 100%; // Position it right below the navbar
-    left: 0;
-    right: 0; // Or width: 100%;
-    background-color: $primary;
-    z-index: 1000; // Same as navbar, or just below if navbar needs to be above an overlay
-    padding: 1rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: block !important; /* Or flex, block is fine for a simple box */
+    position: fixed !important; /* Position relative to viewport */
+    top: 50px !important; /* Place it clearly on screen */
+    left: 10px !important;
+    right: 10px !important; /* Give it width */
+    min-height: 100px !important; /* Ensure it has height */
+    background-color: blue !important; /* Different, very obvious color */
+    z-index: 20000 !important; /* Extremely high z-index */
+    opacity: 1 !important;
+    visibility: visible !important;
+    border: 3px solid lime !important; /* Obvious border */
+    padding: 10px !important; // Ensure padding doesn't make content invisible
   }
 
   // Styles for list items within the mobile dropdown
+  /*
   .nav-links.nav-links-mobile-open li {
     width: 100%;
     text-align: center;
     margin: 0.5rem 0;
     padding: 0.5rem 0; // Make the whole li a larger tap target
   }
+  */
 
   // Styles for links within the mobile dropdown list items
   .nav-links.nav-links-mobile-open li a {
-    display: block; // Ensure link takes full width of li
-    color: #fff; // Ensure link text is white
-    // padding: 0.5rem 0; // Padding can be on <li> or <a>, choose one or split
+    color: yellow !important;
+    font-size: 16px !important;
+    display: block !important; // Ensure links take space
+    padding: 5px !important;
+    background-color: purple !important; // Different background for items
+    margin-bottom: 2px !important;
   }
 }
 

@@ -2,9 +2,12 @@
   width: 100vw;
   height: 50vh;
   background-image: url("./../../assets/washing-machine.jpg");
-  background-size: auto;
-  background-position: 0px -300px;
+  // background-size: auto; // Removed in favor of cover
+  // background-position: 0px -300px; // Removed as per instruction
   align-content: center;
+  display: flex; // Added to help center the image
+  justify-content: center; // Added to help center the image
+  align-items: center; // Added to help center the image
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -17,5 +20,21 @@
     background-color: #005450e0;
     padding: 2rem;
     border-radius: 5rem;
+    max-width: 600px; // Added max-width
+    display: block; // Ensures img is block for centering if parent is text-align center
+    margin: 0 auto; // Helps with centering if parent doesn't have flex centering
+  }
+}
+
+@media (max-width: 767px) {
+  .logo-card {
+    // No changes needed for logo-card itself unless height needs adjustment
+    // e.g. height: 40vh;
+
+    img {
+      width: 75vw;
+      padding: 1.5rem;
+      border-radius: 3rem;
+    }
   }
 }

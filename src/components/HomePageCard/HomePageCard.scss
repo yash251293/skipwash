@@ -10,6 +10,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-left: 1rem; // Add some padding for smaller screens
+    padding-right: 1rem; // Add some padding for smaller screens
   }
 
   &__title {
@@ -31,8 +33,32 @@
     margin: 1rem 0 3rem 0;
   }
 
-  h4 {
+  h4 { // This targets __title implicitly
     font-size: 3rem;
     margin: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .homepage-card {
+    &__content {
+      // No specific changes here unless text alignment needs to be centered
+    }
+
+    h4 { // This targets __title implicitly
+      font-size: 2.25rem; // Reduced font size for title
+    }
+
+    &__desc {
+      font-size: medium; // Reduced font size for description
+      max-width: 90%; // Allow desc to use more of the available width
+    }
+
+    &__divider {
+      width: 10rem; // Reduced width for divider
+      // If it should be centered:
+      // width: 80%;
+      // margin: 1rem auto 3rem auto;
+    }
   }
 }

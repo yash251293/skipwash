@@ -10,8 +10,8 @@ const TimeSelector = ({ onChange }: TimeSelectorProps) => {
   const currentTime = Date.now();
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 1 }}>
+    <div className="time-selector-container">
+      <div style={{ flex: 1 }}> {/* This div might need a class if more specific styling is needed than just being a child */}
         <Calendar
           onChange={onChange}
           tileDisabled={({ date }) => {

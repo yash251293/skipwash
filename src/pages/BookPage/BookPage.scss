@@ -2,13 +2,15 @@
 
 .additional-services-list {
   display: flex !important;
-  flex-direction: row !important;
+  flex-direction: row !important; // Keep important for specificity over MUI if needed initially
   background-color: colors.$primary;
+  padding: 0.5rem; // Add some padding to the container
+  justify-content: center; // Center items in row layout
 
   .MuiFormControlLabel-root {
     background-color: white;
     padding: 0 2rem 0 1rem;
-    margin: 1rem;
+    margin: 1rem; // Original margin
     border-style: solid;
     border-color: colors.$primary;
     border-radius: 10px;
@@ -23,6 +25,8 @@
 }
 
 .laundromat-list {
+  // Assuming this is a child of laundromat-container
+  // Add styling if it needs to be full width or have specific margins on mobile
   &__item-info {
     display: flex;
     &__price {
@@ -34,43 +38,14 @@
 }
 
 .disabled {
-  //
   opacity: 0.5;
   cursor: not-allowed;
-  //   pointer-events: none;
 }
-
-// .laundromat-list {
-//   flex: 1;
-//   border-top-right-radius: 20px;
-//   border-bottom-right-radius: 20px;
-//   border-color: colors.$primary;
-//   border-style: solid;
-//   border-width: 4px;
-
-//   &__item {
-//     padding: 1rem 0 1rem 0;
-//     cursor: pointer;
-//     h4,
-//     p {
-//       margin: 0;
-//     }
-
-//     &:hover {
-//       background-color: colors.$primary-hover;
-//       color: white;
-//     }
-//   }
-
-//   .selected {
-//     color: white;
-//     background-color: colors.$primary;
-//   }
-// }
 
 .laundromat-info {
   flex: 1;
   background: white;
+  padding-left: 3rem; // Original padding
 
   &__disallowed {
     text-align: left;
@@ -79,34 +54,77 @@
   h3 {
     margin: 0;
   }
-
-  padding-left: 3rem;
 }
 
-.select-address {
-  width: 60vw;
+.select-address { // This is likely a TextField or its container
+  width: 60vw; // Original width
   align-self: center;
+  max-width: 500px; // Cap on larger screens
 }
 
 .notes-form {
   background-color: colors.$primary;
   color: white;
   padding: 0.5rem !important;
-  //   display: flex;
-  //   flex-direction: row !important;
-
-  //   align-self: center;
-  //   width: 100%;
-  //   .MuiFormLabel-root {
-  //     color: white;
-  //   }
-  //   .MuiFormControl-root {
-  //     color: white;
-  //   }
 }
 
 .checkout-button {
+  // This class seems to wrap a MUI Button.
+  // The sx prop changes in TSX will handle its sizing and padding.
+  // If .MuiButtonBase-root rule was for something specific, it might need adjustment
+  // based on new sx props, but for now, let's assume sx is enough.
   .MuiButtonBase-root {
-    padding: 3rem;
+    // padding: 3rem; // This will be overridden by sx prop.
+  }
+}
+
+// Media Queries for Responsiveness
+@media (max-width: 767px) {
+  .additional-services-list {
+    flex-direction: column !important;
+    align-items: center; // Center items in column layout
+
+    .MuiFormControlLabel-root {
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      width: 90%; // Make labels take more width
+      max-width: 350px; // Cap width of items
+      box-sizing: border-box; // Ensure padding is included in width
+      justify-content: center; // Center content within the label if it's a flex container
+    }
+  }
+
+  .laundromat-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1rem; // Add padding to container
+    padding-right: 1rem;
+    box-sizing: border-box;
+  }
+
+  .laundromat-list {
+    width: 100%; // Make list take full width in column layout
+    // Example: if laundromat-list items need to be centered or styled
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+  }
+
+  .laundromat-info {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    text-align: center; // Center text content on mobile
+    width: 100%; // Make info take full width
+    box-sizing: border-box;
+
+    &__disallowed {
+      text-align: center; // Ensure this also centers if present
+    }
+  }
+
+  .select-address { // For TextField
+    width: 90%;
   }
 }

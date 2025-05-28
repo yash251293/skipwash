@@ -49,17 +49,17 @@ const HomePage = ({}) => {
           <SubHomePageCard
             title={"STEP 1"}
             desc={HOW_DOES_IT_WORK_STEPS[1]}
-            icon={<CalendarMonthRoundedIcon sx={{ fontSize: "5rem" }} />}
+            icon={<CalendarMonthRoundedIcon sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem' } }} />}
           />
           <SubHomePageCard
             title={"STEP 2"}
             desc={HOW_DOES_IT_WORK_STEPS[2]}
-            icon={<LocalLaundryServiceRoundedIcon sx={{ fontSize: "5rem" }} />}
+            icon={<LocalLaundryServiceRoundedIcon sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem' } }} />}
           />
           <SubHomePageCard
             title={"STEP 3"}
             desc={HOW_DOES_IT_WORK_STEPS[3]}
-            icon={<LocalShippingRoundedIcon sx={{ fontSize: "5rem" }} />}
+            icon={<LocalShippingRoundedIcon sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem' } }} />}
           />
         </HomePageCard>
       </div>
@@ -72,17 +72,17 @@ const HomePage = ({}) => {
           <SubHomePageCard
             title={"STEP 1"}
             desc={HOW_DO_I_PREPARE_STEPS[1]}
-            icon={<ShoppingBagRoundedIcon sx={{ fontSize: "5rem" }} />}
+            icon={<ShoppingBagRoundedIcon sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem' } }} />}
           />
           <SubHomePageCard
             title={"STEP 2"}
             desc={HOW_DO_I_PREPARE_STEPS[2]}
-            icon={<AccessAlarmsRoundedIcon sx={{ fontSize: "5rem" }} />}
+            icon={<AccessAlarmsRoundedIcon sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem' } }} />}
           />
           <SubHomePageCard
             title={"STEP 3"}
             desc={HOW_DO_I_PREPARE_STEPS[3]}
-            icon={<NotificationsActiveRoundedIcon sx={{ fontSize: "5rem" }} />}
+            icon={<NotificationsActiveRoundedIcon sx={{ fontSize: { xs: '3rem', sm: '4rem', md: '5rem' } }} />}
           />
         </HomePageCard>
       </div>

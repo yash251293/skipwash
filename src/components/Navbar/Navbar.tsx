@@ -1,8 +1,14 @@
+import { useState } from "react";
 import "./Navbar.scss";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <nav className="navbar">
@@ -11,22 +17,34 @@ const Navbar = () => {
           Skipwash
         </a>
       </div>
+      <div className={`hamburger-icon ${isMobileMenuOpen ? "open" : ""}`} onClick={toggleMobileMenu}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </div>
       <div className="navbar-center">
-        <ul className="nav-links">
+        <ul className={`nav-links ${isMobileMenuOpen ? "mobile-menu-open" : ""}`}>
           <li
             onClick={() => {
               navigate("/home/services");
+              if (isMobileMenuOpen) toggleMobileMenu();
             }}
           >
             HOW DOES IT WORK?
           </li>
-          <li>
+          <li onClick={() => {
+              if (isMobileMenuOpen) toggleMobileMenu();
+            }}>
             <a href="/contact">CONTACT</a>
           </li>
-          <li>
+          <li onClick={() => {
+              if (isMobileMenuOpen) toggleMobileMenu();
+            }}>
             <a href="/book">BOOK ONLINE</a>
           </li>
-          <li>
+          <li onClick={() => {
+              if (isMobileMenuOpen) toggleMobileMenu();
+            }}>
             <a href="/tracking">LAUNDRY TRACKING</a>
           </li>
         </ul>

@@ -5,6 +5,9 @@
   display: flex;
   align-items: center;
   margin: 1rem 0rem 1rem 0rem;
+  padding-left: 1rem; // Add some padding for smaller screens
+  padding-right: 1rem; // Add some padding for smaller screens
+  box-sizing: border-box; // Ensure padding is included in width
 
   color: black;
 
@@ -12,9 +15,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 2rem 3rem 2rem 3rem;
+    padding: 2rem 3rem;
     border-radius: 0.5rem;
-    width: 40rem;
+    width: 100%; // Take full width of parent .sub-homepage-card
+    max-width: 40rem; // But not more than 40rem
+    box-sizing: border-box; // Ensure padding is included in width
+    // margin-left: auto; // Not needed due to parent's align-items: center
+    // margin-right: auto; // Not needed
   }
 
   &__content-text {
@@ -28,10 +35,9 @@
     p {
       margin: 0px;
     }
-    // padding: 2rem 5rem 2rem 15rem;
   }
 
-  &__title {
+  &__title { // This refers to the h2 element
     text-align: left;
   }
 
@@ -41,20 +47,67 @@
     letter-spacing: 0.025rem;
   }
 
-  &__divider {
+  &__divider { // Not used in this component's TSX, but styles exist
     width: 15rem;
     background-color: black;
     height: 0.8rem;
     margin: 1rem 0 1rem 0;
   }
 
-  h2 {
+  h2 { // This is the title
     font-size: 1.5rem;
     margin: 0px;
   }
 
-  img {
+  img { // This is for the icon if passed as an img tag
     width: 75px;
     min-width: 75px !important;
+    height: auto; // Maintain aspect ratio
+  }
+}
+
+@media (max-width: 767px) {
+  .sub-homepage-card {
+    padding-left: 0.5rem; // Reduce overall padding for the card itself
+    padding-right: 0.5rem;
+
+    &__content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1.5rem 1rem;
+    }
+
+    &__content-text {
+      padding-left: 0;
+      padding-top: 1rem;
+      align-items: center; // Center text content
+      font-size: medium; // Adjust font size for description text
+      p {
+        text-align: center; // Ensure paragraph text is centered
+      }
+    }
+
+    h2 { // This is the title
+      font-size: 1.25rem;
+    }
+
+    // If MUI icons are used via the `icon` prop and styled with `sx` in TSX,
+    // this `img` style might not apply to them.
+    // However, if an `<img>` tag is ever used, this will make it responsive.
+    img {
+      width: 60px; // Reduced size for image based icons
+      min-width: 60px !important;
+    }
+
+     // Ensure titles and descriptions within content-text are also centered
+    &__title { // This refers to the h2 element
+      text-align: center;
+    }
+
+    &__desc {
+      text-align: center;
+      max-width: 90%; // Allow it to use more width
+    }
   }
 }

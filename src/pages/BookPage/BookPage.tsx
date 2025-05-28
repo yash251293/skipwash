@@ -84,16 +84,17 @@ const BookPage = () => {
           variant="outlined"
           value={searchCityQuery}
           onChange={(e) => setSearchCityQuery(e.target.value)}
-          style={{ marginBottom: "1rem", width: '50%' }} // Example width, adjust as needed
+          sx={{ mb: "1rem", width: { xs: '90%', sm: '70%', md: '50%' }, maxWidth: '500px', alignSelf: 'center' }}
         />
         {/* Suggestions List */}
         {suggestedCities.length > 0 && (
-          <Paper 
-            elevation={3} 
-            sx={{ 
-              position: 'absolute', 
-              zIndex: 1000, 
-              width: '50%', // Match TextField width
+          <Paper
+            elevation={3}
+            sx={{
+              position: 'absolute',
+              zIndex: 1000,
+              width: { xs: '90%', sm: '70%', md: '50%' }, // Match TextField width
+              maxWidth: '500px',
               maxHeight: '200px',
               overflowY: 'auto',
               marginTop: '56px', // Approximate height of TextField + margin
@@ -257,13 +258,7 @@ const BookPage = () => {
       </div>
       <Divider />
       <Button
-        style={{
-          padding: "1rem",
-          margin: "1rem",
-          width: "30vw",
-          alignSelf: "center",
-          color: "015450",
-        }}
+        sx={{ padding: "1rem", margin: "1rem auto", width: { xs: '90%', sm: '60%', md: '30vw' }, maxWidth: '350px', display: 'block', color: "#015450" }}
         variant="contained"
         className="checkout-button"
         disabled={!readLaundromat}

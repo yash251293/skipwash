@@ -8,60 +8,174 @@
   color: #fff;
   position: sticky;
   top: 0;
+  z-index: 1001; // Ensure navbar is above other content, but mobile menu can be higher
   font-family: "system-ui";
   font-weight: 100;
-  padding: 1rem 5rem 1rem 5rem;
+  padding: 1rem 1.5rem; // Mobile padding by default
 }
 
-.navbar-center {
-  flex: 1;
+@media (min-width: 768px) {
+  .navbar {
+    padding: 1rem 5rem; // Desktop padding
+  }
 }
 
 .navbar-left .logo {
-  font-size: 2rem;
+  font-size: 1.5rem; // Adjusted for mobile
   color: #fff;
   text-decoration: none;
   font-weight: 700;
 }
 
-.navbar-center .nav-links {
+@media (min-width: 768px) {
+  .navbar-left .logo {
+    font-size: 2rem; // Desktop logo size
+  }
+}
+
+.hamburger-icon {
+  display: none; // Hidden by default
+  cursor: pointer;
+}
+
+.hamburger-icon .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-center {
+  // On desktop, it takes space and holds the links
+  @media (min-width: 768px) {
+    flex: 1; // Allows nav-links to distribute space
+    display: flex;
+    justify-content: center; // Center the links within this div
+  }
+}
+
+.nav-links {
   list-style-type: none;
-  display: flex;
+  display: none; // Hidden by default on mobile
   margin: 0;
   padding: 0;
   letter-spacing: 0.025rem;
+
+  @media (min-width: 768px) {
+    display: flex; // Displayed as flex row on desktop
+    flex-direction: row;
+    align-items: center; // Align items vertically in the center
+    justify-content: center; // Center links if navbar-center has flex:1
+    width: auto; // Take up necessary width
+    position: static; // Reset from absolute
+    background-color: transparent; // No special background on desktop
+  }
 }
 
-.navbar-center .nav-links li {
-  flex: 1;
-  margin-right: 1rem;
+.nav-links li {
+  cursor: pointer;
+  @media (min-width: 768px) {
+    flex: none; // Don't grow/shrink on desktop
+    margin-right: 1rem;
+    padding: 0; // Reset padding
+    width: auto; // Reset width
+    text-align: left; // Reset text-align
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
-.navbar-center .nav-links a {
+.nav-links a {
   color: #fff;
   text-decoration: none;
+  display: block; // Make the whole area clickable
+  padding: 0.5rem 0; // Add padding for mobile tap targets
+
+  @media (min-width: 768px) {
+    padding: 0; // Reset padding for desktop
+  }
 }
 
-.navbar-right {
+// Mobile menu specific styles
+.nav-links.mobile-menu-open {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 100%; // Position below the navbar
+  left: 0;
+  right: 0;
+  background-color: $primary;
+  z-index: 1000; // Below navbar's z-index if navbar needs to be above it, but above other page content
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2); // Optional: separator line
+}
+
+.nav-links.mobile-menu-open li {
+  width: 100%;
+  text-align: center;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0; // Padding for each item
+}
+
+@media (max-width: 767px) {
+  .navbar-center .nav-links:not(.mobile-menu-open) {
+    display: none; // Ensure nav-links are hidden if not mobile-menu-open
+  }
+
+  .navbar-center {
+    // The container of nav-links might not need to take space if links are absolute
+    // Or, it could be used to position the hamburger icon if it's inside it.
+    // Based on current TSX, hamburger is separate, so navbar-center can be minimal.
+    flex-grow: 0; // Don't let it take up space if its children are hidden/absolute
+  }
+
+  .hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px; // Height for the bars to be spaced out
+    // No specific order needed here, it will be placed by flexbox in navbar
+  }
+}
+
+// Styles for when the menu is open (e.g., 'X' icon for hamburger)
+// This requires adding a class to the hamburger icon via JS when isMobileMenuOpen is true
+.hamburger-icon.open .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger-icon.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-icon.open .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+// Remove existing right section styling if not used
+.navbar-right {
+  // display: flex; // This was for cart/user icons, if they exist, they'll need responsive handling too
+  // align-items: center;
 }
 
 .navbar-right .cart-icon,
 .navbar-right .user-icon {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 1rem;
-  position: relative;
+  // color: #fff;
+  // text-decoration: none;
+  // margin-left: 1rem;
+  // position: relative;
 }
 
 .navbar-right .cart-count {
-  background-color: #f44336;
-  color: #fff;
-  border-radius: 50%;
-  padding: 0.2rem 0.5rem;
-  font-size: 0.8rem;
-  position: absolute;
-  top: -0.5rem;
-  right: -0.5rem;
+  // background-color: #f44336;
+  // color: #fff;
+  // border-radius: 50%;
+  // padding: 0.2rem 0.5rem;
+  // font-size: 0.8rem;
+  // position: absolute;
+  // top: -0.5rem;
+  // right: -0.5rem;
 }

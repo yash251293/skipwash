@@ -6,8 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import HomePage from "./pages/HomePage/HomePage.tsx"; // Commented out
 // import BookPage from "./pages/BookPage/BookPage.tsx"; // Commented out
 // import CheckoutPage from "./pages/Checkout/Checkout.tsx"; // Commented out
-// import { setupWorker } from "msw/browser";
-// import { handlers } from "./mocks/handlers.ts";
+import { setupWorker } from "msw/browser"; // Restored
+import { handlers } from "./mocks/handlers.ts"; // Restored
 
 // Placeholder components (commented out)
 // const ContactPage = () => <div>Contact Page</div>;
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-// const server = setupWorker(...handlers);
-// server.start();
+const server = setupWorker(...handlers); // Restored
+server.start(); // Restored
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

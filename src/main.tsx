@@ -14,10 +14,22 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // const TrackingPage = () => <div>Tracking Page</div>;
 // const NotFoundPage = () => <div>404 - Page Not Found</div>;
 
+const MinimalTestPage = () => (
+  <div style={{color: 'black', fontSize: '30px', textAlign: 'center', paddingTop: '50px', backgroundColor: 'lightseagreen', height: '100vh' }}>
+    Minimal Test Page via Outlet!
+  </div>
+);
+
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />, // Render the imported App component directly
+    element: <App />, // App.tsx as layout
+    children: [
+      {
+        path: "/",
+        element: <MinimalTestPage />, // Render MinimalTestPage via Outlet
+      },
+      // No other routes for this test
+    ],
   },
 ]);
 

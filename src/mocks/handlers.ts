@@ -28,22 +28,23 @@ export const handlers = [
     await delay(300); // Simulate network delay
     return HttpResponse.json(filteredCities);
   }),
-  http.get("https://localhost:8080/laundromat", async () => {
+  http.get("http://localhost:8080/vendor/nearby", async () => {
     await delay(1000);
     return HttpResponse.json(laundromats);
   }),
+  // Example 404 Not Found
+  // http.get("http://localhost:8080/vendor/nearby", async () => {
+  //   await delay(500);
+  //   return new HttpResponse(null, { status: 404, statusText: 'Not Found' });
+  // }),
+
+  // Example 500 Internal Server Error
+  // http.get("http://localhost:8080/vendor/nearby", async () => {
+  //   await delay(500);
+  //   return new HttpResponse(null, { status: 500, statusText: 'Internal Server Error' });
+  // }),
   http.get(
     "https://localhost:8080/laundromat/services/*",
-    async ({ params }) => {
-      await delay(3000);
-      if (params[0] === "1") {
-        return HttpResponse.json(servicesVendorOne);
-      }
-      return HttpResponse.json(servicesVendorTwo);
-    }
-  ),
-  http.get(
-    "https://localhost:8080/laundromat/laundromat/timeslots/*",
     async ({ params }) => {
       await delay(3000);
       if (params[0] === "1") {

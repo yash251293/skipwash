@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import HomePageCard from "../../components/HomePageCard/HomepageCard";
+import HomePageCard from "../../components/HomePageCard/HomePageCard";
 import SubHomePageCard from "../../components/SubHomePageCard/SubHomePageCard";
 import {
   HOW_DO_I_PREPARE,
@@ -17,7 +17,7 @@ import LocalShippingRoundedIcon from "@mui/icons-material/LocalShippingRounded";
 import ShoppingBagRoundedIcon from "@mui/icons-material/ShoppingBagRounded";
 import AccessAlarmsRoundedIcon from "@mui/icons-material/AccessAlarmsRounded";
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
-import "./Homepage.scss";
+import "./HomePage.scss";
 
 const HomePage = ({}) => {
   const { scrollTo = "" } = useParams();

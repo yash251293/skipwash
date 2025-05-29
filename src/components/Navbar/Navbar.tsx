@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./Navbar.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Keep for programmatic navigation if needed elsewhere, or for combined actions
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -15,18 +15,18 @@ const Navbar = () => {
       {/* Desktop Header */}
       <div className="navbar-desktop">
         <div className="navbar-left">
-          <a href="/" className="logo">
+          <Link to="/" className="logo">
             Skipwash
-          </a>
+          </Link>
         </div>
         <div className="navbar-center">
           <ul className="nav-links"> {/* For desktop */}
-            <li onClick={() => navigate("/home/services")}>
-              HOW DOES IT WORK?
+            <li>
+              <Link to="/home/services">HOW DOES IT WORK?</Link>
             </li>
-            <li><a href="/contact">CONTACT</a></li>
-            <li><a href="/book">BOOK ONLINE</a></li>
-            <li><a href="/tracking">LAUNDRY TRACKING</a></li>
+            <li><Link to="/contact">CONTACT</Link></li>
+            <li><Link to="/book">BOOK ONLINE</Link></li>
+            <li><Link to="/tracking">LAUNDRY TRACKING</Link></li>
           </ul>
         </div>
       </div>
@@ -34,12 +34,12 @@ const Navbar = () => {
       {/* Mobile Header bar */}
       <div className="navbar-mobile">
         <div className="navbar-left"> {/* Can reuse or use new class for mobile logo */}
-          <a href="/" className="logo">
+          <Link to="/" className="logo">
             Skipwash
-          </a>
+          </Link>
         </div>
-        <div 
-          className={`mobile-hamburger-icon ${isMobileMenuOpen ? "mobile-hamburger-icon--open" : ""}`} 
+        <div
+          className={`mobile-hamburger-icon ${isMobileMenuOpen ? "mobile-hamburger-icon--open" : ""}`}
           onClick={toggleMobileMenu}
         >
           <span className="mobile-bar"></span>
@@ -51,20 +51,17 @@ const Navbar = () => {
       {/* Mobile Dropdown Menu (conditionally rendered) */}
       {isMobileMenuOpen && (
         <ul className="mobile-nav-links">
-          <li onClick={() => { navigate("/home/services"); toggleMobileMenu(); }}>
-            HOW DOES IT WORK?
+          <li onClick={toggleMobileMenu}>
+            <Link to="/home/services">HOW DOES IT WORK?</Link>
           </li>
-          {/* For links that are direct hrefs, ensure toggleMobileMenu is called.
-              If using React Router's <Link> component, place toggleMobileMenu in its onClick.
-              For simple hrefs, and if you want to navigate via JS for consistency: */}
-          <li onClick={() => { navigate("/contact"); toggleMobileMenu(); }}>
-            CONTACT
+          <li onClick={toggleMobileMenu}>
+            <Link to="/contact">CONTACT</Link>
           </li>
-          <li onClick={() => { navigate("/book"); toggleMobileMenu(); }}>
-            BOOK ONLINE
+          <li onClick={toggleMobileMenu}>
+            <Link to="/book">BOOK ONLINE</Link>
           </li>
-          <li onClick={() => { navigate("/tracking"); toggleMobileMenu(); }}>
-            LAUNDRY TRACKING
+          <li onClick={toggleMobileMenu}>
+            <Link to="/tracking">LAUNDRY TRACKING</Link>
           </li>
         </ul>
       )}

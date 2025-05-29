@@ -13,69 +13,125 @@
 }
 
 .navbar-desktop {
-  display: flex;
+  display: none; // Hidden by default (mobile-first)
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5rem; // Desktop padding
 }
 
 .navbar-mobile {
-  display: none !important; // Hidden by default, shown in mobile media query
+  display: flex; // Shown by default (mobile-first)
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem; // Mobile padding
 }
 
 .navbar-left .logo {
-  font-size: 1.5rem; // Adjusted for mobile
+  font-size: 1.5rem; // Default for mobile
   color: #fff;
   text-decoration: none;
   font-weight: 700;
 }
 
+// Mobile-specific styles (default)
+.mobile-hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1005;
+}
+
+.mobile-hamburger-icon .mobile-bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(2) {
+  opacity: 0;
+}
+.mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+ul.mobile-nav-links {
+  display: flex; // Shown/hidden by JS conditional rendering
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 1rem 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: $primary;
+  z-index: 1001;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+ul.mobile-nav-links li {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+ul.mobile-nav-links li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+// Desktop styles
 @media (min-width: 768px) {
+  .navbar-desktop {
+    display: flex; // Show desktop navbar
+  }
+
+  .navbar-mobile {
+    display: none; // Hide mobile navbar elements
+  }
+
   .navbar-left .logo {
     font-size: 2rem; // Desktop logo size
   }
-}
 
-// Styles for the new hamburger placeholder - This class is no longer used.
-// .new-hamburger {
-//   display: none; 
-// }
-
-.navbar-center {
-  // On desktop, it takes space and holds the links
-  // This rule itself is fine if .navbar-center is part of .navbar-desktop
-  // Media query below is for the specific context of .navbar-center within .navbar-desktop
-  @media (min-width: 768px) {
+  .navbar-center {
     flex: 1;
     display: flex;
     justify-content: center;
   }
-}
 
-.nav-links { // These are the desktop links within .navbar-center
-  list-style-type: none;
-  // display: none; // This global 'display: none' is too broad now.
-                 // It should be handled by .navbar-desktop visibility.
-                 // Desktop links are visible by default if their parent .navbar-desktop is.
-  margin: 0;
-  padding: 0;
-  letter-spacing: 0.025rem;
-
-  // This media query correctly styles .nav-links for desktop view
-  @media (min-width: 768px) {
-    display: flex;
+  .nav-links { // These are the desktop links within .navbar-center
+    list-style-type: none;
+    display: flex; // Show desktop nav links
     flex-direction: row;
     align-items: center;
     justify-content: center;
     width: auto;
     position: static;
     background-color: transparent;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.025rem;
   }
-}
 
-.nav-links li { // Styling for desktop list items
-  cursor: pointer;
-  @media (min-width: 768px) {
+  .nav-links li {
+    cursor: pointer;
     flex: none;
     margin-right: 1rem;
     padding: 0;
@@ -85,6 +141,49 @@
       margin-right: 0;
     }
   }
+
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 0; // Desktop links usually don't need extra padding
+  }
+
+  // Hide mobile-specific elements on desktop if they were globally defined
+  .mobile-hamburger-icon {
+    display: none;
+  }
+  // ul.mobile-nav-links is conditionally rendered by JS, so no specific rule needed here to hide it,
+  // but if it were CSS-controlled, it would be display: none;
+}
+
+// Styles for the new hamburger placeholder - This class is no longer used.
+// .new-hamburger {
+//   display: none;
+// }
+
+.navbar-center {
+  // On desktop, it takes space and holds the links
+  // This rule itself is fine if .navbar-center is part of .navbar-desktop
+  // Media query below is for the specific context of .navbar-center within .navbar-desktop
+  // MOVED INTO THE MAIN @media (min-width: 768px) BLOCK
+}
+
+.nav-links { // These are the desktop links within .navbar-center
+  list-style-type: none;
+  // display: none; // This global 'display: none' is too broad now.
+                 // It should be handled by .navbar-desktop visibility.
+                 // Desktop links are visible by default if their parent .navbar-desktop is.
+  // MOVED INTO THE MAIN @media (min-width: 768px) BLOCK
+  // Styles that were here are now default (mobile) or under min-width:768px (desktop)
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.025rem; // This can be a base style if applicable to mobile too, or desktop only
+}
+
+.nav-links li { // Styling for desktop list items
+  cursor: pointer;
+  // MOVED INTO THE MAIN @media (min-width: 768px) BLOCK
 }
 
 .nav-links a { // Styling for desktop links
@@ -92,89 +191,91 @@
   text-decoration: none;
   display: block; // Make the whole area clickable
   // padding: 0.5rem 0; // This was for mobile tap targets, remove from general rule
-  @media (min-width: 768px) {
-    padding: 0; // Desktop links usually don't need extra padding
-  }
+  // MOVED INTO THE MAIN @media (min-width: 768px) BLOCK
 }
 
 // Styles for mobile-nav-links (the dropdown) will be added here later
 // For now, it's controlled by JS conditional rendering.
+// MOVED MOBILE STYLES OUTSIDE MEDIA QUERIES (MOBILE-FIRST)
 
 @media (max-width: 767px) {
-  .navbar-desktop {
-    display: none !important; /* Hide desktop header on mobile. !important can be reviewed later if issues arise with specificity. */
-  }
+  // THIS ENTIRE BLOCK IS REMOVED AND REPLACED BY MOBILE-FIRST DEFAULTS
+  // AND A SINGLE @media (min-width: 768px) BLOCK
 
-  .navbar-mobile {
-    display: flex !important; /* Show mobile header bar. !important can be reviewed later. */
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem; // Mobile padding
-  }
+  // .navbar-desktop {
+  //   display: none !important; /* Hide desktop header on mobile. !important can be reviewed later if issues arise with specificity. */
+  // }
 
-  .mobile-hamburger-icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    background-color: transparent; // Ensuring no debug color remains
-    padding: 0;
-    cursor: pointer;
-    z-index: 1005; // Ensures it's above the mobile dropdown if they overlap somehow (though dropdown is absolute)
-  }
+  // .navbar-mobile {
+  //   display: flex !important; /* Show mobile header bar. !important can be reviewed later. */
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   padding: 1rem 1.5rem; // Mobile padding
+  // }
 
-  .mobile-hamburger-icon .mobile-bar {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: #fff;
-    border-radius: 3px;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  }
+  // .mobile-hamburger-icon {
+  //   display: flex;
+    // flex-direction: column;
+    // justify-content: space-around;
+    // width: 30px;
+    // height: 25px;
+    // background-color: transparent; // Ensuring no debug color remains
+    // padding: 0;
+    // cursor: pointer;
+    // z-index: 1005; // Ensures it's above the mobile dropdown if they overlap somehow (though dropdown is absolute)
+  // }
 
-  // 'X' animation for the hamburger icon when open
-  .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(2) {
-    opacity: 0;
-  }
-  .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
+  // .mobile-hamburger-icon .mobile-bar {
+    // display: block;
+    // width: 100%;
+    // height: 3px;
+    // background-color: #fff;
+    // border-radius: 3px;
+    // transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  // }
 
-  // Styles for the mobile dropdown menu itself
-  ul.mobile-nav-links {
-    display: flex; // This is shown/hidden by JS conditional rendering, not by class change in SCSS
-    flex-direction: column;
-    list-style-type: none;
-    margin: 0;
-    padding: 1rem 0;
-    position: absolute;
-    top: 100%; // Position below the .navbar (which contains .navbar-mobile)
-    left: 0;
-    right: 0;
-    background-color: $primary;
-    z-index: 1001; // Ensure it's above general page content but below any modals if navbar is also below modals
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-  }
+  // // 'X' animation for the hamburger icon when open
+  // .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(1) {
+    // transform: translateY(8px) rotate(45deg);
+  // }
+  // .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(2) {
+    // opacity: 0;
+  // }
+  // .mobile-hamburger-icon.mobile-hamburger-icon--open .mobile-bar:nth-child(3) {
+    // transform: translateY(-8px) rotate(-45deg);
+  // }
 
-  ul.mobile-nav-links li {
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    display: block;
-    padding: 0.75rem 1rem;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    cursor: pointer;
-  }
+  // // Styles for the mobile dropdown menu itself
+  // ul.mobile-nav-links {
+    // display: flex; // This is shown/hidden by JS conditional rendering, not by class change in SCSS
+    // flex-direction: column;
+    // list-style-type: none;
+    // margin: 0;
+    // padding: 1rem 0;
+    // position: absolute;
+    // top: 100%; // Position below the .navbar (which contains .navbar-mobile)
+    // left: 0;
+    // right: 0;
+    // background-color: $primary;
+    // z-index: 1001; // Ensure it's above general page content but below any modals if navbar is also below modals
+    // border-top: 1px solid rgba(255, 255, 255, 0.2);
+  // }
 
-  ul.mobile-nav-links li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+  // ul.mobile-nav-links li {
+    // width: 100%;
+    // text-align: center;
+    // margin: 0;
+    // display: block;
+    // padding: 0.75rem 1rem;
+    // color: #fff;
+    // text-decoration: none;
+    // font-size: 1rem;
+    // cursor: pointer;
+  // }
+
+  // ul.mobile-nav-links li:hover {
+    // background-color: rgba(255, 255, 255, 0.1);
+  // }
 }
 
 // Commented out or deleted sections related to old hamburger icons or intermediate attempts are removed.

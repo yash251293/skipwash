@@ -33,32 +33,49 @@
     margin: 1rem 0 3rem 0;
   }
 
-  h4 { // This targets __title implicitly
-    font-size: 3rem;
+  // Default (mobile) styles for title
+  &__title {
+    font-size: 2.25rem; // Mobile font size for title
     margin: 0;
+    // text-align: left; // Already defined above, kept for clarity if needed
+  }
+
+  // Default (mobile) styles for description
+  &__desc {
+    // text-align: left; // Already defined above
+    // max-width: 600px; // Base style, overridden for mobile below
+    letter-spacing: 0.035rem;
+    font-size: medium; // Mobile font size for description
+    margin: 0;
+    max-width: 90%; // Allow desc to use more of the available width on mobile
+  }
+
+  // Default (mobile) styles for divider
+  &__divider {
+    width: 10rem; // Mobile width for divider
+    // background-color: black; // Already defined above
+    // height: 0.8rem; // Already defined above
+    // margin: 1rem 0 3rem 0; // Already defined above
+    // If it should be centered on mobile:
+    // margin: 1rem auto 3rem auto;
   }
 }
 
-@media (max-width: 767px) {
+// Desktop overrides
+@media (min-width: 768px) {
   .homepage-card {
-    &__content {
-      // No specific changes here unless text alignment needs to be centered
-    }
-
-    h4 { // This targets __title implicitly
-      font-size: 2.25rem; // Reduced font size for title
+    &__title {
+      font-size: 3rem; // Desktop font size for title
     }
 
     &__desc {
-      font-size: medium; // Reduced font size for description
-      max-width: 90%; // Allow desc to use more of the available width
+      font-size: larger; // Desktop font size for description
+      max-width: 600px; // Restore desktop max-width
     }
 
     &__divider {
-      width: 10rem; // Reduced width for divider
-      // If it should be centered:
-      // width: 80%;
-      // margin: 1rem auto 3rem auto;
+      width: 15rem; // Desktop width for divider
+      // margin: 1rem 0 3rem 0; // Restore desktop margin if it was different
     }
   }
 }

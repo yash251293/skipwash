@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import "./HomePageCard.scss";
 
-interface HomePageCard {
+interface HomePageCardProps { // Renaming to HomePageCardProps for clarity, common practice
   title: string;
   description?: string;
   backgroundColor?: string;
-  children?: any;
+  children?: ReactNode; // Changed from any to ReactNode
 }
 
 const HomePageCard = ({
@@ -12,7 +13,7 @@ const HomePageCard = ({
   description,
   backgroundColor,
   children,
-}: HomePageCard) => {
+}: HomePageCardProps) => { // Adjusted to use HomePageCardProps
   return (
     <div className="homepage-card" style={{ backgroundColor }}>
       <div className="homepage-card__content">

@@ -2,15 +2,16 @@
 
 .additional-services-list {
   display: flex !important;
-  flex-direction: row !important; // Keep important for specificity over MUI if needed initially
+  flex-direction: row !important;
+  flex-wrap: wrap; // Allow items to wrap
   background-color: colors.$primary;
-  padding: 0.5rem; // Add some padding to the container
-  justify-content: center; // Center items in row layout
+  padding: 0.5rem;
+  justify-content: center;
 
   .MuiFormControlLabel-root {
     background-color: white;
-    padding: 0 2rem 0 1rem;
-    margin: 1rem; // Original margin
+    padding: 0 1.5rem 0 0.75rem; // Slightly reduced padding for better wrapping on medium screens
+    margin: 0.5rem; // Reduced margin for better wrapping on medium screens
     border-style: solid;
     border-color: colors.$primary;
     border-radius: 10px;
@@ -25,14 +26,19 @@
 }
 
 .laundromat-list {
-  // Assuming this is a child of laundromat-container
-  // Add styling if it needs to be full width or have specific margins on mobile
   &__item-info {
     display: flex;
+    // Target the div inside __item-info that holds ListItemText components.
+    // This is a bit generic; if ListItemText wraps its content in spans, target those.
+    // For now, assuming a div structure or that ListItemText itself handles text.
+    > div { // This might target more than just text containers. Be specific if possible.
+      word-break: break-word;
+    }
     &__price {
       align-self: center;
       padding-left: 1rem;
       font-weight: 700;
+      white-space: nowrap; // Price shouldn't wrap
     }
   }
 }
@@ -45,21 +51,27 @@
 .laundromat-info {
   flex: 1;
   background: white;
-  padding-left: 3rem; // Original padding
+  padding: 1.5rem; // General padding for all sides
+  word-break: break-word; // Apply to the whole container
+
+  // Target specific text elements if the above isn't enough
+  h2, h3, h4, p, ul li {
+    word-break: break-word; // Or overflow-wrap: break-word;
+  }
 
   &__disallowed {
     text-align: left;
-  }
-
-  h3 {
-    margin: 0;
+    // Ensure list items within disallowed also wrap if needed
+    ul li {
+      word-break: break-word;
+    }
   }
 }
 
-.select-address { // This is likely a TextField or its container
-  width: 60vw; // Original width
+.select-address {
+  width: 60vw;
   align-self: center;
-  max-width: 500px; // Cap on larger screens
+  max-width: 500px;
 }
 
 .notes-form {
@@ -69,28 +81,24 @@
 }
 
 .checkout-button {
-  // This class seems to wrap a MUI Button.
-  // The sx prop changes in TSX will handle its sizing and padding.
-  // If .MuiButtonBase-root rule was for something specific, it might need adjustment
-  // based on new sx props, but for now, let's assume sx is enough.
   .MuiButtonBase-root {
-    // padding: 3rem; // This will be overridden by sx prop.
+    // padding: 3rem; // sx prop will handle this
   }
 }
 
 // Media Queries for Responsiveness
-@media (max-width: 767px) {
+@media (max-width: 767px) { // Styles for small mobile screens
   .additional-services-list {
-    flex-direction: column !important;
-    align-items: center; // Center items in column layout
+    flex-direction: column !important; // Stack items vertically
+    align-items: center;
 
     .MuiFormControlLabel-root {
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      width: 90%; // Make labels take more width
-      max-width: 350px; // Cap width of items
-      box-sizing: border-box; // Ensure padding is included in width
-      justify-content: center; // Center content within the label if it's a flex container
+      margin: 0.5rem 0; // Vertical margin for stacked items
+      padding: 0.5rem 1rem; // Restore ample padding for touch targets
+      width: 90%;
+      max-width: 350px;
+      box-sizing: border-box;
+      justify-content: center;
     }
   }
 
@@ -98,33 +106,31 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    padding-left: 1rem; // Add padding to container
+    padding-left: 1rem;
     padding-right: 1rem;
     box-sizing: border-box;
   }
 
   .laundromat-list {
-    width: 100%; // Make list take full width in column layout
-    // Example: if laundromat-list items need to be centered or styled
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
+    width: 100%;
   }
 
   .laundromat-info {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1rem;
-    text-align: center; // Center text content on mobile
-    width: 100%; // Make info take full width
+    padding: 1rem; // Adjust padding for mobile
+    text-align: center;
+    width: 100%;
     box-sizing: border-box;
 
     &__disallowed {
-      text-align: center; // Ensure this also centers if present
+      text-align: center;
+      ul {
+        padding-left: 0; // Remove default list indent if centering
+        list-style-position: inside; // If using list-style
+      }
     }
   }
 
-  .select-address { // For TextField
+  .select-address {
     width: 90%;
   }
 }

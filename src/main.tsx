@@ -3,32 +3,30 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx"; // Should be active
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import HomePage from "./pages/HomePage/HomePage.tsx"; // Commented out
+import HomePage from "./pages/HomePage/HomePage.tsx"; // Restored
 // import BookPage from "./pages/BookPage/BookPage.tsx"; // Commented out
 // import CheckoutPage from "./pages/Checkout/Checkout.tsx"; // Commented out
 import { setupWorker } from "msw/browser"; // Restored
 import { handlers } from "./mocks/handlers.ts"; // Restored
 
-// Placeholder components (commented out)
-// const ContactPage = () => <div>Contact Page</div>;
-// const TrackingPage = () => <div>Tracking Page</div>;
-// const NotFoundPage = () => <div>404 - Page Not Found</div>;
+// Placeholder components
+// const ContactPage = () => <div>Contact Page</div>; // Keep commented out
+// const TrackingPage = () => <div>Tracking Page</div>; // Keep commented out
+const NotFoundPage = () => <div>404 - Page Not Found</div>; // Ensure active
 
-const MinimalTestPage = () => (
-  <div style={{color: 'black', fontSize: '30px', textAlign: 'center', paddingTop: '50px', backgroundColor: 'lightseagreen', height: '100vh' }}>
-    Minimal Test Page via Outlet!
-  </div>
-);
+// MinimalTestPage definition removed
 
 const router = createBrowserRouter([
   {
     element: <App />, // App.tsx as layout
     children: [
+      { path: "/", element: <HomePage /> },
       {
-        path: "/",
-        element: <MinimalTestPage />, // Render MinimalTestPage via Outlet
+        path: "/home", // If HomePage uses :scrollTo, this route is needed
+        children: [{ path: ":scrollTo", element: <HomePage /> }],
       },
-      // No other routes for this test
+      // Comment out BookPage, ContactPage, TrackingPage, CheckoutPage routes and their imports for now
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ]);

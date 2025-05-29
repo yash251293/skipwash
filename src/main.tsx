@@ -9,6 +9,11 @@ import CheckoutPage from "./pages/Checkout/Checkout.tsx";
 import { setupWorker } from "msw/browser";
 import { handlers } from "./mocks/handlers.ts";
 
+// Placeholder components
+const ContactPage = () => <div>Contact Page</div>;
+const TrackingPage = () => <div>Tracking Page</div>;
+const NotFoundPage = () => <div>404 - Page Not Found</div>;
+
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -26,11 +31,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-// Placeholder components
-const ContactPage = () => <div>Contact Page</div>;
-const TrackingPage = () => <div>Tracking Page</div>;
-const NotFoundPage = () => <div>404 - Page Not Found</div>;
 
 const server = setupWorker(...handlers);
 server.start();

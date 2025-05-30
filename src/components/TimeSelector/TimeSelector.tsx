@@ -11,7 +11,7 @@ const TimeSelector = ({ onChange }: TimeSelectorProps) => {
 
   return (
     <div className="time-selector-container">
-      <div style={{ flex: 1 }}> {/* This div might need a class if more specific styling is needed than just being a child */}
+      <div className="calendar-wrapper" style={{ flex: 1 }}> {/* Added class */}
         <Calendar
           onChange={onChange}
           tileDisabled={({ date }) => {

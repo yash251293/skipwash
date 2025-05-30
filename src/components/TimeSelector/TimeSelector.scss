@@ -247,43 +247,7 @@ $text-color-dark: #333; // General dark text (very similar to $ac-dark-text)
 }
 // The default .react-calendar--selectRange .react-calendar__tile--hover seems fine for hover during range selection.
 
-
-.time-selector {
-  // flex-grow: 1;
-  // flex-basis: calc(33.333% - 1rem); 
-  // max-width: calc(33.333% - 1rem); 
-  margin: 0.5rem; // Keep margin for some spacing if multiple items were in a row
-  // padding: 0.6rem 0.5rem; 
-  // border-radius: 16px; 
-  font-size: 0.9em; // Keep or adjust font size as needed
-  cursor: pointer;
-  text-align: left; // Default text align for simple text
-  // background: #ffffff; 
-  color: #2c3e50; // Keep text color or make it $ac-dark-text
-  // border: 1px solid #e0e0e0; 
-  // transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
-  // box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
-
-  &:hover {
-    // background: colors.$primary-light; // Revert hover to simple text change if any
-    // color: white;
-    // border-color: colors.$primary-light;
-    // box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-decoration: underline; // Simple hover effect for text
-    color: colors.$primary; // Hover color
-  }
-
-  // New class for demonstrating selected state
-  &--selected { 
-    // background: colors.$primary;
-    // color: white;
-    // border-color: colors.$primary;
-    font-weight: bold;
-    color: colors.$primary; // Selected text color
-    // box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  }
-
-// Media Query for Smaller Screens
+// Media Query for Smaller Screens (This one should be top-level, if it's not already. Assuming it is for now or will be moved)
 @media (max-width: 767px) {
   .time-selector-container {
     flex-direction: column;
@@ -322,32 +286,6 @@ $text-color-dark: #333; // General dark text (very similar to $ac-dark-text)
   }
 }
 
-@media (max-width: 374px) { // Target very small screens
-  .react-calendar {
-    font-size: 0.85em; // Reduce overall font size slightly
-    // Optionally, target specific text elements like navigation labels or tile text
-    // .react-calendar__navigation__label {
-    //   font-size: 1.1em !important; // Adjust if needed
-    // }
-    // .react-calendar__tile {
-    //   font-size: 0.8em !important; // Adjust if needed
-    // }
-  }
-
-  .time-display-area {
-    h3 {
-      font-size: 1em; // Adjust if h3 is too large
-    }
-    h4 {
-      font-size: 0.9em; // Adjust if h4 is too large
-    }
-    .time-slot-text {
-      font-size: 0.9em; // Adjust if time slot text is too large
-    }
-  }
-}
-}
-
 // New class for the text-based time slots, if specific styling is needed beyond .time-selector
 .time-slot-text {
   // Inherits from .time-selector if used together, or define base styles here
@@ -361,11 +299,15 @@ $text-color-dark: #333; // General dark text (very similar to $ac-dark-text)
   // This section can be removed or merged. For now, I'll add the new styles separately.
 }
 
+.calendar-wrapper {
+  min-width: 0; // For flex shrinking
+}
 
 // Container for Time Area
 .time-display-area {
   padding-left: 1rem; // Space from calendar
   flex: 1;
+  min-width: 0; // For flex shrinking
 
   h3 {
     margin-top: 0;
@@ -431,5 +373,26 @@ $text-color-dark: #333; // General dark text (very similar to $ac-dark-text)
       background-color: #ccc; // Grey dot for unavailable, instead of hiding
       // Or display: none; if preferred
     }
+  }
+}
+
+// This is the relocated and refined media query for very small screens
+@media (max-width: 374px) { 
+  .time-selector-container .react-calendar { // Target calendar within the container
+    font-size: 0.85em; 
+    // Add more specific overrides for tile padding/font if needed
+  }
+  .time-selector-container .react-calendar__tile {
+    padding: 0.5em 0.25em !important; // Example: further reduce padding
+    font-size: 0.8em !important; // Example: further reduce font
+  }
+  .time-selector-container .react-calendar__navigation__label {
+      font-size: 1em !important; // Example
+  }
+
+  .time-selector-container .time-display-area { // Target time display area
+    h3 { font-size: 1em; }
+    h4 { font-size: 0.9em; }
+    .time-slot-text { font-size: 0.9em; }
   }
 }

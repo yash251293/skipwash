@@ -10,8 +10,10 @@ import { setupWorker } from "msw/browser"; // Restored
 import { handlers } from "./mocks/handlers.ts"; // Restored
 
 // Placeholder components
-const ContactPage = () => <div>Contact Page</div>; // Definition remains, route will be inactive
-const TrackingPage = () => <div>Tracking Page</div>; // Definition remains, route will be inactive
+// const ContactPage = () => <div>Contact Page</div>; // Old definition removed/replaced
+// const TrackingPage = () => <div>Tracking Page</div>; // Old definition removed/replaced
+const NewContactComponent = () => <div style={{backgroundColor: 'lightyellow', padding: '20px'}}>New Contact Page Test - V1</div>;
+const NewTrackingComponent = () => <div style={{backgroundColor: 'lightcyan', padding: '20px'}}>New Tracking Page Test - V1</div>;
 const NotFoundPage = () => <div>404 - Page Not Found</div>; // Ensure active
 
 // MinimalTestPage definition removed
@@ -26,9 +28,9 @@ const router = createBrowserRouter([
         children: [{ path: ":scrollTo", element: <HomePage /> }],
       },
       { path: "/book", element: <BookPage /> },
-      // { path: "/contact", element: <ContactPage /> },  // Keep commented
-      // { path: "/tracking", element: <TrackingPage /> },// Keep commented
-      { path: "/checkout", element: <CheckoutPage /> },// Re-enable this route
+      { path: "/contact", element: <NewContactComponent /> }, // Use new component
+      { path: "/tracking", element: <NewTrackingComponent /> },// Use new component
+      { path: "/checkout", element: <CheckoutPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

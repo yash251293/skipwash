@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.tsx"; // Should be active
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.tsx"; // Restored
-// import BookPage from "./pages/BookPage/BookPage.tsx"; // Commented out
+import BookPage from "./pages/BookPage/BookPage.tsx"; // Restored
 // import CheckoutPage from "./pages/Checkout/Checkout.tsx"; // Commented out
 import { setupWorker } from "msw/browser"; // Restored
 import { handlers } from "./mocks/handlers.ts"; // Restored
@@ -25,7 +25,10 @@ const router = createBrowserRouter([
         path: "/home", // If HomePage uses :scrollTo, this route is needed
         children: [{ path: ":scrollTo", element: <HomePage /> }],
       },
-      // Comment out BookPage, ContactPage, TrackingPage, CheckoutPage routes and their imports for now
+      { path: "/book", element: <BookPage /> }, // Re-enable this route
+      // { path: "/contact", element: <ContactPage /> }, // Keep commented for now
+      // { path: "/tracking", element: <TrackingPage /> }, // Keep commented for now
+      // { path: "/checkout", element: <CheckoutPage /> }, // Keep commented for now
       { path: "*", element: <NotFoundPage /> },
     ],
   },

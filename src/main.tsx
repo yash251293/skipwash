@@ -5,7 +5,7 @@ import App from "./App.tsx"; // Should be active
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.tsx"; // Restored
 import BookPage from "./pages/BookPage/BookPage.tsx"; // Restored
-import CheckoutPage from "./pages/Checkout/Checkout.tsx"; // Restored
+// import CheckoutPage from "./pages/Checkout/Checkout.tsx"; // Commented out
 import { setupWorker } from "msw/browser"; // Restored
 import { handlers } from "./mocks/handlers.ts"; // Restored
 
@@ -26,9 +26,9 @@ const router = createBrowserRouter([
         children: [{ path: ":scrollTo", element: <HomePage /> }],
       },
       { path: "/book", element: <BookPage /> },
-      // { path: "/contact", element: <ContactPage /> },  // Keep commented
-      // { path: "/tracking", element: <TrackingPage /> },// Keep commented
-      { path: "/checkout", element: <CheckoutPage /> },// Re-enable this route
+      // { path: "/contact", element: <ContactPage /> },  // Should still be commented
+      // { path: "/tracking", element: <TrackingPage /> },// Should still be commented
+      // { path: "/checkout", element: <CheckoutPage /> },// THIS IS THE ROUTE TO COMMENT OUT
       { path: "*", element: <NotFoundPage /> },
     ],
   },

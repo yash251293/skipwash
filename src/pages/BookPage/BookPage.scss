@@ -32,8 +32,17 @@
 }
 
 .laundromat-list {
+  // Styling for the ListItemAvatar when it's a direct child of MuiListItemButton
+  // This is used to control the layout of the avatar and its content.
+  .MuiListItemButton-root > .MuiListItemAvatar-root {
+    flex-shrink: 1; // Allows the avatar container to shrink if content is too wide
+    min-width: 0;   // Prevents the container from overflowing due to large content
+    margin-right: 8px; // Standard MUI spacing is 16px, reduced here
+  }
+
   &__item-info {
     display: flex;
+    width: 100%; // Ensure it uses the available width within the avatar
     // Target the div inside __item-info that holds ListItemText components.
     // This is a bit generic; if ListItemText wraps its content in spans, target those.
     // For now, assuming a div structure or that ListItemText itself handles text.

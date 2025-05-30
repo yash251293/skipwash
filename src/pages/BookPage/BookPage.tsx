@@ -73,7 +73,7 @@ const BookPage = () => {
 
 
   return (
-    <>
+    <div className="book-page-container"> {/* ADDED WRAPPER */}
       <div className="steps">
         <h2>1. Select a Laundromat</h2>
       </div>
@@ -267,7 +267,7 @@ const BookPage = () => {
       >
         Checkout
       </Button>
-    </>
+    </div>
   );
 };
 

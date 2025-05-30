@@ -1,5 +1,11 @@
 @use "../../constants/colors.scss";
 
+.book-page-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 1rem; // Add some horizontal padding to the page itself
+}
+
 .additional-services-list {
   display: flex !important;
   flex-direction: row !important;
@@ -159,7 +165,11 @@
   }
 
   .select-address {
-    width: 90%; // Keep or adjust as needed
-    box-sizing: border-box; // Add/Ensure this
+    width: 100%; // Make it full width of the padded .book-page-container
+    max-width: 450px; // Or a reasonable max for address fields on mobile
+    box-sizing: border-box;
+    align-self: center; // Center it if it's not taking up full space due to max-width
+    margin-left: auto; // To help center
+    margin-right: auto; // To help center
   }
 }

@@ -108,13 +108,18 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0; // Changed from 1rem
+    padding-right: 0; // Changed from 1rem
     box-sizing: border-box;
+    width: 100%; // Ensure full width usage
   }
 
   .laundromat-list {
     width: 100%;
+    // Target text containers within .laundromat-list__item-info for mobile
+    .laundromat-list__item-info > div {
+      word-break: break-all; // More aggressive for mobile
+    }
   }
 
   .laundromat-info {
@@ -122,17 +127,26 @@
     text-align: center;
     width: 100%;
     box-sizing: border-box;
+    word-break: break-all; // Apply to container for mobile
+
+    h2, h3, h4, p, ul li { // Ensure this selector is within .laundromat-info for mobile
+      word-break: break-all; // More aggressive break for mobile
+    }
 
     &__disallowed {
       text-align: center;
       ul {
         padding-left: 0; // Remove default list indent if centering
         list-style-position: inside; // If using list-style
+        li { // Ensure this selector is within .laundromat-info & __disallowed for mobile
+          word-break: break-all; // More aggressive break for mobile
+        }
       }
     }
   }
 
   .select-address {
-    width: 90%;
+    width: 90%; // Keep or adjust as needed
+    box-sizing: border-box; // Add/Ensure this
   }
 }

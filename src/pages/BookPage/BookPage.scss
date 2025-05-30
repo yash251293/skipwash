@@ -33,12 +33,14 @@
     // For now, assuming a div structure or that ListItemText itself handles text.
     > div { // This might target more than just text containers. Be specific if possible.
       word-break: break-word;
+      flex-shrink: 1; // Allow this part to shrink
+      min-width: 0;   // Allow shrinking below intrinsic content width
     }
     &__price {
       align-self: center;
       padding-left: 1rem;
       font-weight: 700;
-      white-space: nowrap; // Price shouldn't wrap
+      white-space: normal; // Allow price to wrap
     }
   }
 }

@@ -379,7 +379,7 @@ $text-color-dark: #333; // General dark text (very similar to $ac-dark-text)
 }
 
 // This is the relocated and refined media query for very small screens
-@media (max-width: 374px) { 
+@media (max-width: 374px) {
   .time-selector-container .react-calendar { // Target calendar within the container
     font-size: 0.8em; // More aggressive
     padding: 0.5em; // More aggressive

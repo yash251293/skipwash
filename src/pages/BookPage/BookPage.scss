@@ -78,9 +78,18 @@
 
   &__disallowed {
     text-align: left;
+    background-color: #fffbeb; // Light yellow background
+    border-left: 4px solid #ffc107; // Amber/orange border
+    padding: 1rem;
+    // margin-top: 0.75rem; // Removed as per new requirement, margin-bottom on h4 handles spacing
+    border-radius: 4px;
+
     // Ensure list items within disallowed also wrap if needed
-    ul li {
-      word-break: break-word;
+    ul {
+      margin-bottom: 0; // Remove default bottom margin from ul
+      li {
+        word-break: break-word;
+      }
     }
   }
 }
@@ -165,10 +174,10 @@
     }
 
     &__disallowed {
-      text-align: center;
+      text-align: left; // Override parent's text-align: center for this block
       ul {
-        padding-left: 0; // Remove default list indent if centering
-        list-style-position: inside; // If using list-style
+        padding-left: 1.5rem; // Adjust padding for items
+        // list-style-position: inside; // Removed to revert to default 'outside'
         li { // Ensure this selector is within .laundromat-info & __disallowed for mobile
           overflow-wrap: break-word; // More aggressive break for mobile
           word-break: break-word; // More aggressive break for mobile

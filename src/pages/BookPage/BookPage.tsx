@@ -22,6 +22,7 @@ import {
   useGetCitySuggestions,
   CitySuggestion, // Import the interface
 } from "../../api/vendor";
+import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined';
 
 const BookPage = () => {
   const [selected, setSelected] = useState<number>();
@@ -200,11 +201,14 @@ const BookPage = () => {
             <h2>{selectedLaundromat?.name}</h2>
             {selectedLaundromat?.disallowedItems?.length ? (
               <>
-                <h4>The following items are NOT supported</h4>
+                <h4 style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '1rem' }}>
+                  <WarningAmberOutlinedIcon sx={{ mr: 1, color: 'warning.main' }} />
+                  The following items are NOT supported
+                </h4>
                 <div className="laundromat-info__disallowed">
                   <ul>
-                    {selectedLaundromat?.disallowedItems.map((item) => {
-                      return <li>{item}</li>;
+                    {selectedLaundromat?.disallowedItems.map((item, index) => {
+                      return <li key={index}>{item}</li>;
                     })}
                   </ul>
                 </div>

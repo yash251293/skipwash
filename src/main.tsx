@@ -5,13 +5,13 @@ import App from "./App.tsx"; // Should be active
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage.tsx"; // Restored
 import BookPage from "./pages/BookPage/BookPage.tsx"; // Restored
-// import CheckoutPage from "./pages/Checkout/Checkout.tsx"; // Commented out
+import CheckoutPage from "./pages/Checkout/Checkout.tsx"; // Restored
 import { setupWorker } from "msw/browser"; // Restored
 import { handlers } from "./mocks/handlers.ts"; // Restored
 
 // Placeholder components
-// const ContactPage = () => <div>Contact Page</div>; // Keep commented out
-// const TrackingPage = () => <div>Tracking Page</div>; // Keep commented out
+const ContactPage = () => <div>Contact Page</div>; // Restored
+const TrackingPage = () => <div>Tracking Page</div>; // Restored
 const NotFoundPage = () => <div>404 - Page Not Found</div>; // Ensure active
 
 // MinimalTestPage definition removed
@@ -25,10 +25,10 @@ const router = createBrowserRouter([
         path: "/home", // If HomePage uses :scrollTo, this route is needed
         children: [{ path: ":scrollTo", element: <HomePage /> }],
       },
-      { path: "/book", element: <BookPage /> }, // Re-enable this route
-      // { path: "/contact", element: <ContactPage /> }, // Keep commented for now
-      // { path: "/tracking", element: <TrackingPage /> }, // Keep commented for now
-      // { path: "/checkout", element: <CheckoutPage /> }, // Keep commented for now
+      { path: "/book", element: <BookPage /> },
+      { path: "/contact", element: <ContactPage /> },     // Re-enable
+      { path: "/tracking", element: <TrackingPage /> },   // Re-enable
+      { path: "/checkout", element: <CheckoutPage /> },   // Re-enable
       { path: "*", element: <NotFoundPage /> },
     ],
   },

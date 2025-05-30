@@ -90,6 +90,11 @@
 
 // Media Queries for Responsiveness
 @media (max-width: 767px) { // Styles for small mobile screens
+  .additional-services { // Added rule for the container
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .additional-services-list {
     flex-direction: column !important; // Stack items vertically
     align-items: center;
@@ -101,6 +106,14 @@
       max-width: 350px;
       box-sizing: border-box;
       justify-content: center;
+      white-space: normal; // Ensure label text can wrap
+      overflow-wrap: break-word; // Break long words if necessary
+
+      .MuiTypography-root { // Assuming the label is an MUI Typography component
+          white-space: normal;
+          overflow-wrap: break-word;
+          text-align: left;
+      }
     }
   }
 

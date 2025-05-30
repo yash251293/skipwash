@@ -206,6 +206,7 @@ const BookPage = () => {
           style={{ alignSelf: "center" }}
         />
       </FormControl>
+      {/*
       <div
         className={`additional-services ${!readLaundromat ? "disabled" : null}`}
       >
@@ -243,6 +244,7 @@ const BookPage = () => {
           )}
         </FormGroup>
       </div>
+      */}
       <div className={`pickup-time ${!readLaundromat ? "disabled" : null}`}>
         <div className="steps">
           <h2>3. Select a Pickup Time</h2>

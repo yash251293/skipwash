@@ -148,24 +148,35 @@ const BookPage = () => {
                           <div className="laundromat-list__item-info">
                             <div>
                               <ListItemText
-                                slotProps={{ primary: { fontWeight: 800 } }}
+                                primaryTypographyProps={{
+                                  style: {
+                                    fontWeight: 800,
+                                    whiteSpace: 'normal',
+                                    overflowWrap: 'break-word',
+                                    wordBreak: 'break-all',
+                                  }
+                                }}
                               >
                                 {name}
                               </ListItemText>
                               <ListItemText
-                                sx={{
-                                  whiteSpace: 'normal',
-                                  overflowWrap: 'break-word',
-                                  wordBreak: 'break-all', // More aggressive for website URLs
+                                primaryTypographyProps={{
+                                  style: {
+                                    whiteSpace: 'normal',
+                                    overflowWrap: 'break-word',
+                                    wordBreak: 'break-all',
+                                  }
                                 }}
                               >
                                 {website}
                               </ListItemText>
                               <ListItemText
-                                sx={{
-                                  whiteSpace: 'normal',
-                                  overflowWrap: 'break-word',
-                                  wordBreak: 'break-all',
+                                primaryTypographyProps={{
+                                  style: {
+                                    whiteSpace: 'normal',
+                                    overflowWrap: 'break-word',
+                                    wordBreak: 'break-all',
+                                  }
                                 }}
                               >
                                 {address}, {city}, {postalCode}

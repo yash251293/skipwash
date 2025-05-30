@@ -95,7 +95,7 @@ const BookPage = () => {
               zIndex: 1000,
               width: { xs: '90%', sm: '70%', md: '50%' }, // Match TextField width
               maxWidth: '500px',
-              maxHeight: '200px',
+              maxHeight: { xs: '30vh', sm: '200px' },
               overflowY: 'auto',
               marginTop: '56px', // Approximate height of TextField + margin
               top: 0, // Align with top of TextField container
@@ -153,7 +153,7 @@ const BookPage = () => {
                                     fontWeight: 800,
                                     whiteSpace: 'normal',
                                     overflowWrap: 'break-word',
-                                    wordBreak: 'break-all',
+                                    wordBreak: 'break-word',
                                   }
                                 }}
                               >
@@ -164,7 +164,7 @@ const BookPage = () => {
                                   style: {
                                     whiteSpace: 'normal',
                                     overflowWrap: 'break-word',
-                                    wordBreak: 'break-all',
+                                    wordBreak: 'break-word',
                                   }
                                 }}
                               >
@@ -175,7 +175,7 @@ const BookPage = () => {
                                   style: {
                                     whiteSpace: 'normal',
                                     overflowWrap: 'break-word',
-                                    wordBreak: 'break-all',
+                                    wordBreak: 'break-word',
                                   }
                                 }}
                               >

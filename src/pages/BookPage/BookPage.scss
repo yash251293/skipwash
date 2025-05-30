@@ -137,7 +137,8 @@
     width: 100%;
     // Target text containers within .laundromat-list__item-info for mobile
     .laundromat-list__item-info > div {
-      word-break: break-all; // More aggressive for mobile
+      overflow-wrap: break-word; // More aggressive for mobile
+      word-break: break-word; // More aggressive for mobile
     }
   }
 
@@ -146,10 +147,12 @@
     text-align: center;
     width: 100%;
     box-sizing: border-box;
-    word-break: break-all; // Apply to container for mobile
+    overflow-wrap: break-word; // Apply to container for mobile
+    word-break: break-word; // Apply to container for mobile
 
     h2, h3, h4, p, ul li { // Ensure this selector is within .laundromat-info for mobile
-      word-break: break-all; // More aggressive break for mobile
+      overflow-wrap: break-word; // More aggressive break for mobile
+      word-break: break-word; // More aggressive break for mobile
     }
 
     &__disallowed {
@@ -158,7 +161,8 @@
         padding-left: 0; // Remove default list indent if centering
         list-style-position: inside; // If using list-style
         li { // Ensure this selector is within .laundromat-info & __disallowed for mobile
-          word-break: break-all; // More aggressive break for mobile
+          overflow-wrap: break-word; // More aggressive break for mobile
+          word-break: break-word; // More aggressive break for mobile
         }
       }
     }

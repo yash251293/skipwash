@@ -201,8 +201,8 @@ const BookPage = () => {
             <h2>{selectedLaundromat?.name}</h2>
             {selectedLaundromat?.disallowedItems?.length ? (
               <>
-                <h4 style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', fontSize: '1.1rem', marginBottom: '1rem' }}>
-                  <WarningAmberOutlinedIcon sx={{ mr: 1, color: 'warning.main' }} />
+                <h4 style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold' }} sx={{ fontSize: { xs: '1rem', sm: '1.1rem' }, marginBottom: { xs: '0.5rem', sm: '1rem' } }}>
+                  <WarningAmberOutlinedIcon sx={{ mr: { xs: 0.5, sm: 1 }, color: 'warning.main', fontSize: { xs: '1.25rem', sm: 'default' } }} />
                   The following items are NOT supported
                 </h4>
                 <div className="laundromat-info__disallowed">

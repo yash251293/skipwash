@@ -175,8 +175,12 @@
 
     &__disallowed {
       text-align: left; // Override parent's text-align: center for this block
+      background-color: transparent;
+      border-left: 2px solid #ffc107;
+      padding: 0.5rem 0.75rem;
+      border-radius: 2px;
       ul {
-        padding-left: 1.5rem; // Adjust padding for items
+        padding-left: 1.25rem; // Adjust padding for items
         // list-style-position: inside; // Removed to revert to default 'outside'
         li { // Ensure this selector is within .laundromat-info & __disallowed for mobile
           overflow-wrap: break-word; // More aggressive break for mobile

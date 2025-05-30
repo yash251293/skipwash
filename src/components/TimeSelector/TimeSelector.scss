@@ -274,6 +274,8 @@ $text-color-dark: #333; // General dark text (very similar to $ac-dark-text)
 
       h3, h4 {
         text-align: center; // Ensure headers are centered
+        white-space: normal; // Ensure text can wrap
+        overflow-wrap: break-word; // Allow long words/strings to break if necessary
       }
 
       .time-slots-group {
@@ -379,20 +381,27 @@ $text-color-dark: #333; // General dark text (very similar to $ac-dark-text)
 // This is the relocated and refined media query for very small screens
 @media (max-width: 374px) { 
   .time-selector-container .react-calendar { // Target calendar within the container
-    font-size: 0.85em; 
-    // Add more specific overrides for tile padding/font if needed
+    font-size: 0.8em; // More aggressive
+    padding: 0.5em; // More aggressive
   }
   .time-selector-container .react-calendar__tile {
-    padding: 0.5em 0.25em !important; // Example: further reduce padding
-    font-size: 0.8em !important; // Example: further reduce font
+    padding: 0.4em 0.2em !important; // More aggressive
+    font-size: 0.75em !important; // More aggressive
+  }
+  .time-selector-container .react-calendar__navigation button {
+    padding: 0.1em !important; // More aggressive
+    font-size: 0.9em !important; // More aggressive
   }
   .time-selector-container .react-calendar__navigation__label {
-      font-size: 1em !important; // Example
+    font-size: 0.9em !important; // More aggressive
+  }
+  .time-selector-container .react-calendar__month-view__weekdays__weekday abbr {
+    font-size: 0.7em !important; // More aggressive
   }
 
   .time-selector-container .time-display-area { // Target time display area
-    h3 { font-size: 1em; }
-    h4 { font-size: 0.9em; }
-    .time-slot-text { font-size: 0.9em; }
+    h3 { font-size: 0.9em; } // More aggressive
+    h4 { font-size: 0.8em; } // More aggressive
+    .time-slot-text { font-size: 0.8em; } // More aggressive
   }
 }
